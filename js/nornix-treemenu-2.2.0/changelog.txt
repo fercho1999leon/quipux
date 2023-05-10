@@ -1,0 +1,68 @@
+Version 2.2.0 -- 2008-03-11
+
+* added Tango skin
+* made openAll/closeAll functions available from the outside
+* even better keyboard support (see documentation)
+* added hooks for user-defined event handlers (on document/folder click)
+* a cookie is used to prevent preloading of images multiple times
+* created automated build system so that builds can be done more often
+* swapped ShrinkSafe for YUI Compressor for shrinking the code (after benchmarking many alternatives)
+* started to use tags in the repository for every release
+* new version numbering system
+
+Version 2.00beta1 -- 2007-07-27
+
+* updated old themes for IE7
+* added GIF images to serve IE6 in the new default theme
+* new default theme
+* restructured documentation and added quick-start page and more
+* added combined a nornix.js (partially) and treemenu.js in nornix-treemenu.js
+* new build process with ShrinkSafe compressed files
+* added path configuration for image preloader
+* moved NornixTreeMenu to Nornix.TreeMenu
+* added smart delayed initialization
+* changed configuration settings structure (breaking BC)
+* added experimental administrative mode (treemenu-admin.js)
+* added whitespace removal (also removes comments -- slower but safer)
+* many speed optimizations
+* added hook for decoration of current folder/document
+* added support for handling a link to the menu in a nice way
+* added support for ESC key to leave the menu
+* added support for arrow keys
+
+Version 1.78a -- 2006-08-09
+* added "Library" skin
+* small change to menu.css
+
+Version 1.78 -- 2006-06-05
+* added compressed version
+* save() method is now private
+* new JSDoc style comments
+* swapClasses() rewritten from scratch (now array-based)
+* moved swapClasses() to common.js
+
+Version 1.77 -- 2006-05-20
+* added !important in the stylesheets to override existing style rules
+* added rule to remove background images on list items
+
+Version 1.76 -- 2006-05-05
+* removed loopFolders(), not really needed any more
+* simplified prepareFolderTree()
+* fixed issue with multiple menus
+* moved RegExp patterns
+
+Version 1.75 -- 2006-04-24
+Now released as Nornix TreeMenu
+* wrapped script in TreeMenu class
+* added open/close all folders function
+* added support for keyboard navigation
+* added fixes for IE7b2
+* added support for inserting classes client-side
+* fixed issue with existing classes getting removed
+* added support for non-linked folders
+* change: now hooks into CSS with a class, the
+  id is only for JS
+* change: new way to start the script
+
+Version 1.1 -- 2005-09-03
+Last release as TreeMenu3.

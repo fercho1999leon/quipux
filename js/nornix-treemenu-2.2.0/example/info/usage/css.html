@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>CSS classes - Usage - Information - Nornix TreeMenu</title><link rel="StyleSheet" href="../../style/main.css" type="text/css" media="screen" /><link rel="StyleSheet" href="../../style/menu.css" type="text/css" media="screen" /><link rel="StyleSheet" href="../../style/print.css" type="text/css" media="print" /><!--[if lte IE 6]><link rel="StyleSheet" href="../../style/ie.css" type="text/css" media="screen" /><![endif]--><!--[if lte IE 6]><link rel="StyleSheet" href="../../style/ie-menu.css" type="text/css" media="screen" /><![endif]--><!--[if IE 7]><link rel="StyleSheet" href="../../style/ie7-menu.css" type="text/css" media="screen" /><![endif]--><script type="text/javascript" src="../../script/nornix-treemenu.js"></script><script type="text/javascript" src="../../script/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="../../favicon.ico" /><link rel="Icon" type="image/x-icon" href="../../favicon.ico" /><meta name="generator" content="Nornix CMS / Cms3 build 326 by Anders Nawroth (2007-01-11) www.nornix.com" /><meta http-equiv="imagetoolbar" content="no" /><meta name="MSSmartTagsPreventParsing" content="true" /></head><body><div id="wrapper"><div id="logotype"><img src="../../images/treemenu.png" alt="Nornix TreeMenu" width="324" height="53" /></div>
+<a id="menulink" accesskey="m" href="#menu"><span>M</span>enu</a><div class="menu-breadcrumbs" id="menu-breadcrumbs">You are here: <a href="../../index.html" title="Nornix TreeMenu">start</a> / <a href="javascript:;" title="Information">info</a> / <a href="javascript:;" title="Usage">usage</a> / <a title="CSS classes">CSS</a></div>
+<div id="container"><div id="content"><h1>CSS classes for styling the menu</h1>
+<dl>
+<dt>menu</dt><dd>used on the <code>&lt;div&gt;</code> element encapsulationg the menu.</dd>
+<dt>root</dt><dd>used on the <code>&lt;a&gt;</code> tag immidiately following the opening <code>&lt;div id="menu" class="menu"&gt;</code> tag</dd>
+
+<dt>folder</dt><dd>used on <code>&lt;li&gt;</code> tags that represent folders, i.e. has child nodes</dd><dt>document</dt><dd>used on <code>&lt;li&gt;</code> tags that represent documents, i.e. has no child nodes</dd><dt>last</dt><dd>last <code>&lt;li&gt;</code> in a <code>&lt;ul&gt;</code></dd><dt>open, closed</dt><dd>used to indicate status of <code>&lt;li&gt;</code> tag representing a folder</dd>
+<dt>current</dt><dd>is set on the <code>&lt;a&gt;</code> element of the current page (that should have no <code>href</code> attribute at all when creating the menu dynamically on the server-side). Don't set this in the HTML, only use it in your CSS.</dd>
+</dl>
+
+<h2>Menu levels</h2>
+<p>The CSS of the menu is written to accomodate an unlimited number of menu levels. Unfortunately this requires the CSS level 2 <a href="http://www.w3.org/TR/CSS21/selector.html#child-selectors">child selector</a> <code>"&gt;"</code>, which is not implemented in Internet Explorer version 6 and earlier. This is worked around in the <code>ie-menu.css</code> stylesheet.</p>
+<p>However, the Internet Explorer workaround does only allow for a limited number of menu levels. You can increase the number of levels by adding more lines in all code similar to this:</p>
+<pre>
+.menu li.folder span,
+.menu li.open li.folder span,
+.menu li.open li.folder li.folder span,
+.menu li.open li.folder li.folder li.folder span
+{/* style rules */}
+</pre>
+<p>Remeber to change <em>all</em> such selector-"rows" to keep them in balance with each other. Maybe you also should think twice to find out if your menu really needs more than four levels!</p>
+
+<div class="pageinfo">Last modified: 2007-07-25<br /></div><!--[if lte IE 6]><span id="em">—</span><![endif]-->
+<div style="clear:both;height:0.5em;"></div></div></div>
+<div id="navigation">
+<div id="menu" class="menu"><a href="../../index.html" title="Nornix TreeMenu">start</a><ul><li><a href="javascript:;" title="Information">info</a><ul><li><a href="../features.html" title="Features">features</a></li><li><a href="../functions.html" title="Functions">functions</a></li><li><a href="../quick-start.html">quick-start</a></li><li><a href="javascript:;" title="Usage">usage</a><ul><li><a href="how-to.html" title="How to use Nornix TreeMenu">how-to</a></li><li><a href="html.html" title="HTML structure">HTML</a></li><li><a href="css.html" title="CSS classes">CSS</a></li><li><a href="js.html" title="JS behavior">JS</a></li><li><a href="images.html" title="Images">images</a></li></ul>
+</li><li><a href="../compatibility.html" title="Compatibility">compatibility</a></li><li><a href="../flavours.html" title="Flavours">flavours</a></li><li><a href="../skins.html" title="Skins">skins</a></li><li><a href="../layers.html" title="Layers">layers</a></li><li><a href="../advanced.html" title="Advanced">advanced</a></li></ul>
+</li><li><a href="../../license.html">license</a></li><li><a href="javascript:;">folder one</a><ul><li><a href="../../folder1/doc1.html">document one</a></li><li><a href="../../folder1/doc2.html">document two</a></li></ul>
+</li><li><a href="javascript:;">ajax page load</a><ul><li><a href="javascript:;">folder three</a><ul><li><a href="../../folder2/folder3/doc3.html">document three</a></li><li><a href="../../folder2/folder3/doc4.html">document four</a></li></ul>
+</li><li><a href="javascript:;">folder four</a><ul><li><a href="../../folder2/folder4/doc5.html">document five</a></li><li><a href="../../folder2/folder4/doc6.html">document six</a></li><li><a href="javascript:;">folder five</a><ul><li><a href="../../folder2/folder4/folder5/doc7.html">document seven</a></li></ul>
+</li></ul>
+</li></ul>
+</li><li><a href="../../download.html">download</a></li><li><a href="../../contact.html">contact</a></li><li><a href="../../toc.html" title="Contents">contents</a></li></ul>
+</div><div id="tools"></div>
+<div id="buttons">
+<a href="http://nornix.sourceforge.net/"><img src="../../images/nornix-javascript.png" alt="Nornix JavaScript" width="88" height="31" /></a>
+<a href="http://sourceforge.net/donate/index.php?group_id=164828"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" alt="Support This Project"  style="border:none;" /></a>
+<a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=164828&amp;type=1" width="88" height="31" alt="SourceForge.net Logo" /></a>
+</div>
+</div>
+<div id="footer">Nornix TreeMenu</div>
+<div style="clear:both;height:0.5em;"></div>
+</div></body>
+</html>

@@ -1,0 +1,108 @@
+/**  Programa para el manejo de gestion documental, oficios, memorandos, circulares, acuerdos
+*    Desarrollado y en otros Modificado por la SubSecretaría de Informática del Ecuador
+*    Quipux    www.gestiondocumental.gov.ec
+*------------------------------------------------------------------------------
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU Affero General Public License as
+*    published by the Free Software Foundation, either version 3 of the
+*    License, or (at your option) any later version.
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with this program.  If not, see http://www.gnu.org/licenses.
+*------------------------------------------------------------------------------
+**/
+
+/*  ESTILOS PARA EL MANEJO DEL CALENDARIO */
+
+.calphp_dia_amarillo {
+    color: #808080;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 8pt;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    width: 26px;
+    height: 20px;
+    background-color: #FFFFCC;
+    border-bottom: thin solid #FFFFFF;
+    border-right: thin solid #FFFFFF;
+}
+
+.calphp_dia_azul {
+    text-align: center;
+    vertical-align: middle;
+    width: 26px;
+    height: 20px;
+    background-color: #e3e8ec;
+    border-bottom: thin solid #FFFFFF;
+    border-right: thin solid #FFFFFF;
+}
+
+.calphp_dia_blanco {
+    text-align: center;
+    vertical-align: middle;
+    width: 26px;
+    height: 20px;
+    background-color: #FFFFFF;
+    border-bottom: thin solid #FFFFFF;
+    border-right: thin solid #FFFFFF;
+}
+
+.calphp_dia_titulo {
+    color: #FFFFFF;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 8pt;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    width: 26px;
+    height: 20px;
+    background-color: #6a819d;
+    border: thin solid #FFFFFF;
+}
+
+.calphp_dia_link {
+    color: #000000;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 8pt;
+    font-weight: normal;
+    text-align: center;
+    text-decoration: none;
+}
+
+.calphp_div_calendario {
+    border: thin solid #377584;
+    width: 185px;
+    background-color: #FFFFFF;
+    z-index: 50000;
+}
+
+.calphp_tabla {
+    border: thin solid #377584;
+}
+
+.calphp_combos {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: bolder;
+    background-color: #E3E8EC;
+    color: #000000;
+    border: thin solid #999999;
+    height: 16px;
+}
+
+.calphp_fecha {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bolder;
+    text-align: center;
+    background-color: #E3E8EC;
+    color: #000000;
+    border: thin solid #999999;
+    height: 20px;
+    -moz-border-radius:2px; -webkit-border-radius:2px;
+}

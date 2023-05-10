@@ -1,0 +1,139 @@
+body {
+	margin-bottom:0px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-top:0px;
+	font-family:Helvetica, sans-serif;
+}
+.lineacabecera {
+	width:100%;
+	height:6px;
+	background-image:url(../imagenes/index/linea-naranja-top-cabecera.png);
+	background-repeat:repeat-x;
+}
+.cabecera {
+	width:100%;
+	height:100%;
+}
+.tablacen {
+	width:1024px;
+	height:46px;
+}
+.tablaizq {
+	background-image:url(../imagenes/index/marco-boton-05.png);
+	background-repeat:repeat-x;
+	width:50%;
+	height:46px;
+}
+.tablader {
+	background-image:url(../imagenes/index/marco-boton-06.png);
+	background-repeat:repeat-x;
+	width:100%;
+	height:46px;
+}
+.contenedor {
+	width:100%;
+	background-color:#FFF;
+	height:100%;
+}
+ul.accordion{
+	display:table;
+	margin-left:-20px;
+	margin-top:0px;
+	list-style:none;   
+    position:relative;
+	text-align:left;
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.5em;
+}
+ul.accordion li{
+    float:right;
+    width:170px;
+    height:380px;
+    display:block;
+    border-right:2px solid #fff;
+    border-bottom:2px solid #fff;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    background-position:center center;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    -moz-box-shadow:1px 3px 15px #555;
+    -webkit-box-shadow:1px 3px 15px #555;
+    box-shadow:1px 3px 15px #555;
+}
+ul.accordion li.bg1{
+    background-image:url(../imagenes/index/1.png);
+}
+ul.accordion li.bg2{
+    background-image:url(../imagenes/index/2.png);
+}
+ul.accordion li.bg3{
+    background-image:url(../imagenes/index/3.png);
+}
+
+ul.accordion li.bleft{
+    border-left:2px solid #fff;
+}
+ul.accordion li .imagen1{
+ background-image:url(../imagenes/index/1-1.png);
+ height:380px;
+ width:170px;   
+}
+ul.accordion li .imagen2{
+ background-image:url(../imagenes/index/2-1.png);
+ height:380px;
+ width:170px;   
+}
+ul.accordion li .imagen3{
+ background-image:url(../imagenes/index/3-1.png);
+ height:380px;
+ width:170px;   
+}
+ul.accordion li .description{
+    position:absolute;
+    width:610px;
+    height:325px;
+    top:55px;
+    left:0px;
+    display:none;
+}
+ul.accordion li .description h2{
+    font-style:normal;
+    font-weight:normal;
+    letter-spacing:1px;
+    font-size:26px;
+	text-decoration:underline;
+    color:#000;
+    text-align:left;
+    margin:0px 0px 15px 20px;
+    text-shadow:-1px -1px 1px #ccc;
+}
+ul.accordion li .description p{
+    line-height:14px;
+    margin:10px 22px;
+    font-size: 12px;
+    font-style:normal;
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+	line-height: 135%;
+	}
+ul.accordion li .description a{
+   	font-weight:bold;
+    text-decoration:underline;
+    color:#F15A22;
+}
+ul.accordion li .description a:hover{
+    color:#A35A22;
+    text-decoration:underline;
+}
+.derechos {
+	font-size:14px;
+	color:#567B9B;
+	text-align:center;
+	font-weight:bold;
+}

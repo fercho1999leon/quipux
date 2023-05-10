@@ -1,0 +1,79 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ec.gob.firmadigital</groupId>
+    <artifactId>api</artifactId>
+    <version>3.0.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <name>firmadigital-api</name>
+    <description>API de Firma Digital.</description>
+    <url>http://www.firmadigital.gob.ec</url>
+    <licenses>
+        <license>
+            <name>GNU General Public License, Version 3</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Ricardo Arguello</name>
+            <email>ricardo.arguello@soportelibre.com</email>
+            <organization>Soporte Libre</organization>
+            <organizationUrl>http://www.soportelibre.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Misael Fernández Correa</name>
+            <email>misael.fernandez@mintel.gob.ec</email>
+            <organization>Ministerio de Telecomunicaciones y de la Sociedad de la Información</organization>
+            <organizationUrl>https://www.telecomunicaciones.gob.ec</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://minka.gob.ec/snap/firmadigital-api.git</connection>
+        <developerConnection>scm:git:git@minka.gob.ec:snap/firmadigital-api.git</developerConnection>
+        <url>https://minka.gob.ec/snap/firmadigital-api</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>8.0.1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>3.0.2.Final</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>

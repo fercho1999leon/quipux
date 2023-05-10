@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>How to use Nornix TreeMenu - Usage - Information - Nornix TreeMenu</title><link rel="StyleSheet" href="../../style/main.css" type="text/css" media="screen" /><link rel="StyleSheet" href="../../style/menu.css" type="text/css" media="screen" /><link rel="StyleSheet" href="../../style/print.css" type="text/css" media="print" /><!--[if lte IE 6]><link rel="StyleSheet" href="../../style/ie.css" type="text/css" media="screen" /><![endif]--><!--[if lte IE 6]><link rel="StyleSheet" href="../../style/ie-menu.css" type="text/css" media="screen" /><![endif]--><!--[if IE 7]><link rel="StyleSheet" href="../../style/ie7-menu.css" type="text/css" media="screen" /><![endif]--><script type="text/javascript" src="../../script/nornix-treemenu.js"></script><script type="text/javascript" src="../../script/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="../../favicon.ico" /><link rel="Icon" type="image/x-icon" href="../../favicon.ico" /><meta name="generator" content="Nornix CMS / Cms3 build 326 by Anders Nawroth (2007-01-11) www.nornix.com" /><meta http-equiv="imagetoolbar" content="no" /><meta name="MSSmartTagsPreventParsing" content="true" /></head><body><div id="wrapper"><div id="logotype"><img src="../../images/treemenu.png" alt="Nornix TreeMenu" width="324" height="53" /></div>
+<a id="menulink" accesskey="m" href="#menu"><span>M</span>enu</a><div class="menu-breadcrumbs" id="menu-breadcrumbs">You are here: <a href="../../index.html" title="Nornix TreeMenu">start</a> / <a href="javascript:;" title="Information">info</a> / <a href="javascript:;" title="Usage">usage</a> / <a title="How to use Nornix TreeMenu">how-to</a></div>
+<div id="container"><div id="content"><h1>How to use Nornix TreeMenu</h1>
+<p>To use Nornix TreeMenu, you need to link the CSS and JavaScript files, and make the graphics available. You also have to create the menu according to the instructions on the <a href="html.html">HTML structure</a> page.</p>
+
+<h2>Links in HTML <code>&lt;head&gt;</code></h2>
+<p>To use Nornix TreeMenu, you need to link the following files from the <code>&lt;head&gt;</code> section of the HTML files:</p>
+
+<ul>
+
+<li>menu.css</li>
+
+<li>ie-menu.css</li>
+
+<li>ie7-menu.css</li>
+
+<li>nornix-treemenu.js</li>
+
+</ul>
+
+<h3>CSS and images</h3>
+<p>The CSS stylesheets and <a href="images.html">images</a> of the tree menu should reside in the same directory, with <code>/style</code> as the default path.</p>
+<p>You add the style rules for the menu to your other style information by adding links to the respective CSS files. To link the CSS files, insert this code in the <code>&lt;head&gt;</code> section of your HTML files:</p>
+
+<pre>
+&lt;link rel="StyleSheet"
+ href="../../style/menu.css" type="text/css" media="screen" /&gt;
+&lt;!–[if lte IE 6]&gt;
+&lt;link rel="StyleSheet"
+ href="../../style/ie-menu.css" type="text/css" media="screen" /&gt;
+&lt;![endif]–&gt;
+&lt;!–[if IE 7]&gt;
+&lt;link rel="StyleSheet"
+ href="../../style/ie7-menu.css" type="text/css" media="screen" /&gt;
+&lt;![endif]–&gt;
+</pre>
+
+<p>If the CSS files does not reside in the <code>/style</code> directory, change the path according to where they are located. Please remove the terminating slashes in the <code>&lt;link&gt;</code> elements if you use HTML (not XHTML).</p>
+<p>The menu.css file contains style rules for all browsers, ie-menu.css contains style rules for Internet Exlorer 5.5 and 6, ie7-menu.css contains style rules for Internet Explorer 7. The method used to taget different versions of Internet Explorer is called <a href="http://www.quirksmode.org/css/condcom.html">conditional comments</a>. Microsoft recommends us to <a href="http://blogs.msdn.com/ie/archive/2005/10/12/480242.aspx">use conditional comments rather than CSS hacks</a>.</p>
+<p>We do no longer promote the use of @import hacks to hide the CSS from older browsers, while those browsers are really rare today. If you know that @import hacks are needed for your audience, check the <a href="http://css-discuss.incutio.com/?page=ImportHack">Import Hack</a> page at the CSS-discuss wiki.</p>
+<p>Please be aware of that the provided CSS files are composed for use in <em>standards mode</em>, refer to the <a href="../quick-start.html">quick-start page</a> for details on this.</p>
+
+<h3>JavaScript</h3>
+<p>To link the JS files, insert this code in the <code>&lt;head&gt;</code> section of your HTML files:</p>
+
+<pre>
+&lt;script type="text/javascript" src="/script/nornix-treemenu.js"&gt;
+</pre>
+
+<p>If the <code>nornix-treemenu.js</code> JavaScript file does not reside in the /script directory, change the path according to where they are located.</p>
+<p>Advanced users: If you are already using functions to add and remove events, you can change Nornix.addEvent and Nornix.removeEvent so that they are used as wrappers around your preferred functions/library.</p>
+<p>Starting the script:</p>
+<pre>var treemenu = new Nornix.TreeMenu();
+treemenu.start();
+</pre>
+<p><em>This basic starting code is included in the JavaScript file.</em></p>
+<p>Please see the <a href="js.html">JS page</a> for more information on how to configure the script</p>
+<div class="pageinfo">Last modified: 2008-02-11<br /></div><!--[if lte IE 6]><span id="em">—</span><![endif]-->
+<div style="clear:both;height:0.5em;"></div></div></div>
+<div id="navigation">
+<div id="menu" class="menu"><a href="../../index.html" title="Nornix TreeMenu">start</a><ul><li><a href="javascript:;" title="Information">info</a><ul><li><a href="../features.html" title="Features">features</a></li><li><a href="../functions.html" title="Functions">functions</a></li><li><a href="../quick-start.html">quick-start</a></li><li><a href="javascript:;" title="Usage">usage</a><ul><li><a href="how-to.html" title="How to use Nornix TreeMenu">how-to</a></li><li><a href="html.html" title="HTML structure">HTML</a></li><li><a href="css.html" title="CSS classes">CSS</a></li><li><a href="js.html" title="JS behavior">JS</a></li><li><a href="images.html" title="Images">images</a></li></ul>
+</li><li><a href="../compatibility.html" title="Compatibility">compatibility</a></li><li><a href="../flavours.html" title="Flavours">flavours</a></li><li><a href="../skins.html" title="Skins">skins</a></li><li><a href="../layers.html" title="Layers">layers</a></li><li><a href="../advanced.html" title="Advanced">advanced</a></li></ul>
+</li><li><a href="../../license.html">license</a></li><li><a href="javascript:;">folder one</a><ul><li><a href="../../folder1/doc1.html">document one</a></li><li><a href="../../folder1/doc2.html">document two</a></li></ul>
+</li><li><a href="javascript:;">ajax page load</a><ul><li><a href="javascript:;">folder three</a><ul><li><a href="../../folder2/folder3/doc3.html">document three</a></li><li><a href="../../folder2/folder3/doc4.html">document four</a></li></ul>
+</li><li><a href="javascript:;">folder four</a><ul><li><a href="../../folder2/folder4/doc5.html">document five</a></li><li><a href="../../folder2/folder4/doc6.html">document six</a></li><li><a href="javascript:;">folder five</a><ul><li><a href="../../folder2/folder4/folder5/doc7.html">document seven</a></li></ul>
+</li></ul>
+</li></ul>
+</li><li><a href="../../download.html">download</a></li><li><a href="../../contact.html">contact</a></li><li><a href="../../toc.html" title="Contents">contents</a></li></ul>
+</div><div id="tools"></div>
+<div id="buttons">
+<a href="http://nornix.sourceforge.net/"><img src="../../images/nornix-javascript.png" alt="Nornix JavaScript" width="88" height="31" /></a>
+<a href="http://sourceforge.net/donate/index.php?group_id=164828"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" alt="Support This Project"  style="border:none;" /></a>
+<a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=164828&amp;type=1" width="88" height="31" alt="SourceForge.net Logo" /></a>
+</div>
+</div>
+<div id="footer">Nornix TreeMenu</div>
+<div style="clear:both;height:0.5em;"></div>
+</div></body>
+</html>

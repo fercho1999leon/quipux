@@ -1,0 +1,125 @@
+= FirmaEC: Servicio
+
+_FirmaEC Servicio_ es una plataforma para recibir documentos desde sistemas transversales, para luego ser firmados digitalmente del lado del cliente.
+
+== Introducción
+Los siguientes pasos le permitirán obtener una copia del proyecto para correrla en la máquina local para propósitos de desarrollo y pruebas.
+
+==== WildFly
+Para desplegar la aplicación se necesita un servidor de aplicaciones *Java EE 11*.
+Se debe utilizar _WildFly Application Server 26.1.1_, disponible en http://www.wildfly.org[wildfly.org]
+
+==== Maven
+Para compilar y empaquetar se utiliza http://maven.apache.org[Apache Maven].
+
+
+== Instalación
+Para compilar se utilizar Apache Maven:
+
+[source, bash]
+----
+$ mvn clean package
+----
+
+Esto produce el JAR en _target/firmador-jar-with-dependencies.jar_
+
+
+== Despliegue
+
+Para utilizar la aplicación se debe ejecutar
+
+[source,bash]
+----
+$ java -jar target/firmador-jar-with-dependencies.jar
+----
+
+== Balanceo de carga
+
+Se debe generar una llave a través de la clase ServicioTokenJwt.java y el resultado configurarlo dentro del archivo de configuración Wildfly en la siguiente sección
+
+----
+</extensions>
+<system-properties>
+	<property name="jwt.key" value="value="tYdX9if...=="/>
+</system-properties>
+<management>
+----
+
+Se debe comentar el siguiente código dentro de la clase ServicioDescargaCrl.java para generar el compilado que no realice descargas de CRL
+
+----
+@PostConstruct
+public void init() {
+	crearTablaSiNoExiste();
+	importarCrls();
+}
+----
+
+Después de este proceso, se descomentará y se generará otro compilado para el servidor que realice las descargas de CRL
+
+== Desarrollo
+
+Para facilitar el desarrollo se puede utilizar Docker. Se puede instalar las dependencias de infraestructura, como la base de datos, utilizando contenedores.
+
+Por ejemplo, para ejecutar un servidor PostgreSQL 12, se puede ejecutar:
+
+----
+docker run -d --name postgresql_firmadigital -e POSTGRESQL_USER=firmadigital -e POSTGRESQL_PASSWORD=firmadigital -e POSTGRESQL_DATABASE=firmadigital -p 5432:5432 centos/postgresql-96-centos7
+----
+
+Se necesita un registro en la tabla "sistema" para poder probar, por ejemplo:
+
+----
+export API_KEY=$(pwgen 32 -1 | sha256sum | cut -d' ' -f1)
+echo "El API-KEY a utilizar es $API_KEY"
+export API_KEY_HASH=$(echo -n $API_KEY | sha256sum | cut -d' ' -f1)
+echo "El HASH-256 del API-KEY, a insertar en la base de datos, es $API_KEY_HASH"
+----
+
+En la tabla "sistema" se debería insertar este hash:
+
+----
+INSERT INTO sistema(nombre,url,apikey,descripcion) values ('quipux', 'http://localhost/quipux', '$API_KEY_HASH', 'Quipux');
+----
+
+Para configurar el DataSource de PostgreSQL que apunta al contenedor, en WildFly se puede ejecutar el siguiente script para JBoss CLI:
+
+Ejecutar `bin/jboss-cli.sh -c` y luego el siguiente script:
+
+----
+batch
+module add --name=org.postgresql --resources=/home/rarguello/Downloads/postgresql-42.2.2.jar --dependencies=javax.api,javax.transaction.api
+
+/subsystem=datasources/jdbc-driver=postgresql:add(driver-name=postgresql,driver-module-name=org.postgresql,driver-xa-datasource-class-name=org.postgresql.xa.PGXADataSource)
+
+data-source add --name=FirmaDigitalDS --jndi-name=java:/FirmaDigitalDS --driver-name=postgresql --connection-url=jdbc:postgresql://localhost:5432/firmadigital --user-name=firmadigital --password=firmadigital --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
+
+run-batch
+----
+
+
+== Construido con
+
+* https://maven.apache.org/[Maven] - Dependency Management
+
+
+== Colaborar
+
+Para colaborar se puede enviar un Merge Request utilizando la plataforma https://minka.gob.ec[Minka].
+
+
+== Versiones
+
+Usamos http://semver.org[SemVer] para versionar.
+
+
+== Autores
+
+* *Juan Diego Calle* - *Desarrollo inicial* - http://www.soportelibre.com[Soporte Libre]
+* *Ricardo Arguello* - *Desarrollo* - http://www.soportelibre.com[Soporte Libre]
+* *Misael Fernández* - *Desarrollo* - misael.fernandez.correa@gmail.com
+
+== Licencia
+
+Este proyecto está licenciado bajo la licencia AGPL v3.
+Revisar LICENSE para detalles.

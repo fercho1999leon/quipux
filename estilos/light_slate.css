@@ -1,0 +1,802 @@
+/* light slate specific css */
+
+/* fonts */
+h1 {
+	color: #456387;
+}
+
+h2 {
+	color: #333;
+}
+
+.contentheading {
+	color: #456387;
+}
+
+a.readon {
+	color: #004182;
+	background: url(../img/content/bullet_arrow.png) no-repeat;
+}
+
+a.readon:hover {
+	color: #333;
+}
+
+span.pathway,
+span.pathway a:link,
+span.pathway a:visited {
+	color: #333;
+}
+
+span.pathway {
+	color: #666;
+}
+
+span.pathway img {
+	background:  url(../img/content/bullet_path.png) no-repeat;
+}
+a.aqui:link,
+a.aqui:visited {
+	color: #55d;
+}
+a.grid:link,
+a.grid:visited {
+	color: #000;
+}
+a:link,
+a:visited, a:hover {
+	color: #fff;
+}
+
+#usermod a:link,
+#usermod a:visited,
+#footer a:link,
+#footer a:visited {
+	color: #333;
+}
+
+
+div.moduletable-hilite4 a:link,
+div.moduletable-hilite4 a:visited,
+div.movie-showcase {
+	color: #fff;
+}
+
+#usermod div.moduletable h3 {
+	background: url(../img/mod5-head-bg.png) 0 0 repeat-x;
+}
+
+body {
+		color: #666;
+}
+
+div.bodybox .componentheading,
+div.moduletable-hilite1 h3,
+div.moduletable-hilite2 h3,
+div.moduletable-hilite3 h3,
+div.moduletable-hilite4 h3,
+div.moduletable h3,
+span.loginsubmit,
+span.logoutsubmit,
+span.glossbutton,
+span.searchtitle {
+	color: #333;
+}
+
+td.left div.moduletable h3 {
+	color: #fff;
+}
+
+/* big menus */
+
+#nav-big ul a {
+	color:#333;
+}
+
+#nav-big ul a:hover {
+	color: #666;
+}
+
+#nav-big li.active_menu a:link,
+#nav-big li.active_menu a:visited {
+	color: #000;
+}
+
+#nav-big .b0 {
+	background: url(../img/buttons/button0_off.png)  no-repeat;
+}
+
+#nav-big li.active_menu .b0 {
+	background: url(../img/buttons/button0_on.png) no-repeat;
+}
+
+
+#nav-big .b2 {
+	background: url(../img/buttons/button2_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b2 {
+	background: url(../img/buttons/button2_on.png) no-repeat;
+}
+
+#nav-big .b3 {
+	background: url(../img/buttons/button3_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b3 {
+	background: url(../img/buttons/button3_on.png) no-repeat;
+}
+
+#nav-big .b4 {
+	background: url(../img/buttons/button4_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b4 {
+	background: url(../img/buttons/button4_on.png) no-repeat;
+}
+
+#nav-big .b5 {
+	background: url(../img/buttons/button5_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b5 {
+	background: url(../img/buttons/button5_on.png) no-repeat;
+}
+
+#nav-big .b6 {
+	background: url(../img/buttons/button6_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b6 {
+	background: url(../img/buttons/button6_on.png) no-repeat;
+}
+
+#nav-big .b7 {
+	background: url(../img/buttons/button7_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b7 {
+	background: url(../img/buttons/button7_on.png) no-repeat;
+}
+
+#nav-big .b8 {
+	background: url(../img/buttons/button8_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b8 {
+	background: url(../img/buttons/button8_on.png) no-repeat;
+}
+
+#nav-big .b9 {
+	background: url(../img/buttons/button9_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b9 {
+	background: url(../img/buttons/button9_on.png) no-repeat;
+}
+
+#nav-big .b11 {
+	background: url(../img/buttons/button11_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b11 {
+	background: url(../img/buttons/button11_on.png) no-repeat;
+}
+
+
+#nav-big .b13 {
+	background: url(../img/buttons/button13_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b13 {
+	background: url(../img/buttons/button13_on.png) no-repeat;
+}
+
+#nav-big .b14 {
+	background: url(../img/buttons/button14_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b14 {
+	background: url(../img/buttons/button14_on.png) no-repeat;
+}
+
+#nav-big .b15 {
+	background: url(../img/buttons/button15_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b15 {
+	background: url(../img/buttons/button15_on.png) no-repeat;
+}
+
+#nav-big .b16 {
+	background: url(../img/buttons/button16_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b16 {
+	background: url(../img/buttons/button16_on.png) no-repeat;
+}
+
+#nav-big .b17 {
+	background: url(../img/buttons/button17_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b17 {
+	background: url(../img/buttons/button17_on.png) no-repeat;
+}
+
+
+#nav-big .b19 {
+	background: url(../img/buttons/button19_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b19 {
+	background: url(../img/buttons/button19_on.png) no-repeat;
+}
+
+#nav-big .b20 { /*Firma digital*/
+	background: url(../img/buttons/button20_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b20 {
+	background: url(../img/buttons/button20_on.png) no-repeat;
+}
+
+#nav-big .b50 {
+	background: url(../img/buttons/button50_off.png) no-repeat;
+}
+
+#nav-big li.active_menu .b50 {
+	background: url(../img/buttons/button50_on.png) no-repeat;
+}
+
+#nav-big li.active_menu .b51 {
+	background: url(../img/buttons/button51_on.png) no-repeat;
+}
+
+#nav-big li.active_menu .b52 {
+	background: url(../img/buttons/button52_on.png) no-repeat;
+}
+/* main menu strip */
+
+#nav-main a:link,
+#nav-main a:visited {
+	color: #fff;
+}
+
+#nav-main a:hover {
+	color: #333;
+}
+
+#nav-main li.active_menu {
+	background: url(../img/head-menu-active-right.png) 80% 50% no-repeat;
+}
+
+#nav-main li.active_menu a:link,
+#nav-main li.active_menu a:visited,
+#nav-main li.active_menu a:hover {
+	background: url(../img/head-menu-active-left.png) 0 50% no-repeat;
+	color: #fff;
+}
+
+/* vertical menu */
+div#menu_vert ul.sidenav li {
+	background: url(../img/menu-icon.png) 0 5px no-repeat;
+	border-bottom: 1px solid #F5F5F5;
+}
+
+div#menu_vert a:link,
+div#menu_vert a:visited {
+	color: #333;
+}
+
+div#menu_vert a:hover {
+	color: #666;
+}
+
+div#menu_vert li.active_menu a:link,
+div#menu_vert li.active_menu a:visited {
+	color:  #333;
+}
+
+/* suckerfish menu */
+
+#nav-main li.active {
+	background: url(../img/head-menu-active-right.png) 100% 50% no-repeat;
+}
+
+#nav-main li.active a:link,
+#nav-main li.active a:visited,
+#nav-main li.active a:hover {
+	background: url(../img/head-menu-active-left.png) 0 50% no-repeat;
+	color: #fff;
+}
+
+#nav-main li.active a:hover {
+	color: #fff;
+}
+
+#nav-main li li {
+	border-bottom: 1px solid #314762;
+	border-top: 1px solid #577DAC;
+}
+
+#nav-main li ul {
+	border-top: 1px solid #577DAC;
+	border-right: 1px solid #314762;
+	border-left: 1px solid #577DAC;
+	border-bottom: 1px solid #314762;
+}
+
+#nav-main li:hover ul,
+#nav-main li li:hover ul,
+#nav-main li li li:hover ul,
+#nav-main li li li li:hover ul,
+#nav-main li.sfhover ul,
+#nav-main li li.sfhover ul,
+#nav-main li li li.sfhover ul,
+#nav-main li li li li.sfhover ul{
+	background: #456387;
+}
+
+#nav-main ul li li a:hover,
+#nav-main ul li li li a:hover,
+#nav-main li.active li a:hover,
+#nav-main li.active li li a:hover {
+	background: #758BAB;
+}
+
+#nav-main ul li li.active,
+#nav-main ul li li li.active {
+	background: #2e4762;
+}
+
+/* joomla menus */
+
+a.mainlevel:link,
+a.mainlevel:visited {
+	background: url(../img/menu-icon.png) 0 50% no-repeat;
+	border-bottom: 1px solid #F5F5F5;
+	color: #333;
+}
+
+a.mainlevel:hover {
+	color: #666;
+}
+
+a#active_menu:link,
+a#active_menu:visited {
+	color: #333;
+}
+
+li.active_menu a:link,
+li.active_menu a:visited {
+  color: #333;
+}
+
+
+/* access */
+
+a.large .button {
+	background: url(../img/access-large.png);
+}
+
+a.small .button {
+	background: url(../img/access-small.png);
+}
+
+a.default .button {
+	background: url(../img/access-med.png);
+}
+
+/* layout */
+
+#page-bg {
+	background: #fff url(../img/bg.png) repeat-x;
+}
+
+#top-mod {
+	background: url(../img/top-bg.png) repeat-x;
+}
+
+#top-mod .shad-r {
+	background: url(../img/top-r.png) 100% 0 no-repeat;
+}
+
+#top-mod .shad-l {
+	background: url(../img/top-l.png) 0 0 no-repeat;
+}
+
+#header {
+	background: url(../img/head-bg.png) repeat-x;
+}
+
+#header .shad-r {
+	background: url(../img/head-right.png) 100% 0 no-repeat;
+}
+
+#header .shad-l {
+	background: url(../img/head-logo.png) 0 0 no-repeat;
+}
+
+#header #nav-main {
+	background:  url(../img/head-menu-bg.png) repeat-x;
+}
+
+#header #nav-main .shad-l {
+	background: url(../img/head-menu-left.png) 0 0 no-repeat;
+}
+
+#mainbody {
+	background: #E4E4E4 url(../img/body-shadow-r.png) 100% 0 repeat-y;
+}
+
+#mainbody .shad-1 {
+	background: transparent url(../img/body-shadow-l.png) 0 0 repeat-y;
+}
+
+#mainbody .shad-2 {
+	background: transparent url(../img/body-shadow-tr.png) 100% 0 no-repeat;
+}
+
+#mainbody .shad-3 {
+	background: transparent url(../img/body-shadow-tl.png) 0 0 no-repeat;
+}
+
+#mainbody .shad-4 {
+	background: transparent url(../img/body-shadow-br.png) 100% 100% no-repeat;
+}
+
+#mainbody .shad-5 {
+	background: transparent url(../img/body-shadow-bl.png) 0 100% no-repeat;
+}
+
+#body-bottom {
+	background: url(../img/body-shadow-f.png) repeat-x;
+}
+
+#body-bottom .shad-r {
+	background: url(../img/body-shadow-fr.png) 100% 0 no-repeat;
+}
+
+#body-bottom .shad-l {
+	background: url(../img/body-shadow-fl.png) 0 0 no-repeat;
+}
+
+#footer-mods {
+	background: url(../img/usermod-bg.png) repeat-x;
+}
+
+#footer-mods {
+	background: transparent url(../img/footer-shadow-r.png) 100% 0 repeat-y;
+}
+
+#footer-mods .shad-1 {
+	background: transparent url(../img/footer-shadow-l.png) 0 0 repeat-y;
+}
+
+#footer-mods .shad-2 {
+	background: transparent url(../img/footer-shadow-tr.png) 100% 0 no-repeat;
+}
+
+#footer-mods .shad-3 {
+	background: transparent url(../img/footer-shadow-tl.png) 0 0 no-repeat;
+}
+
+#footer-mods .shad-4 {
+	background: transparent url(../img/footer-shadow-br.png) 100% 100% no-repeat;
+}
+
+#footer-mods .shad-5 {
+	background: transparent url(../img/footer-shadow-bl.png) 0 100% no-repeat;
+}
+
+#usermod {
+	background: #DEDEDE url(../img/usermod-bg.png) repeat-x;
+	border-bottom: 1px solid #ccc;
+}
+
+#footer {
+	background: #E4E4E4 url(../img/footer-bg.png) repeat-x;
+	border-top: 1px solid #fff;
+	color: #333;
+}
+
+#footer-bottom {
+	background: url(../img/footer-shadow-f.png) repeat-x;
+}
+
+#footer-bottom .shad-r {
+	background: url(../img/footer-shadow-fr.png) 100% 0 no-repeat;
+}
+
+#footer-bottom .shad-l {
+	background: url(../img/footer-shadow-fl.png) 0 0 no-repeat;
+}
+
+
+
+/* modules */
+
+
+div.moduletable{
+	color: #eee;
+}
+
+#usermod div.moduletable {
+	color: #333;
+}
+
+div.moduletable,
+td.right div.moduletable {
+	color: #333;
+}
+
+td.left div.moduletable {
+	color: #333;
+}
+
+
+
+td.left div.moduletable
+ {
+	background: #fff; /* url(../img/mod1-foot.png) 0 100% repeat-x;*/
+	color: #333;
+}
+
+td.left div.moduletable h3
+{
+	background: url(../img/mod1-head-bg.png) 0 0 repeat-x;
+	color: #fff;
+}
+
+td.right div.moduletable
+ {
+	background: #fff url(../img/mod3-foot.png) 0 100% repeat-x;
+}
+
+td.right div.moduletable h3
+{
+	background: url(../img/mod3-head-bg.png) 0 0 repeat-x;
+
+}
+
+
+pre {
+	background: #f6f6f6;
+	border-top: 5px solid #ddd;
+	border-bottom: 5px solid #ddd;
+}
+
+
+/* tabber */
+div.moduletable-tabs {
+	background: url(../img/content/tabber_bg.png) no-repeat;
+}
+
+/* login form */
+#top-mod a:link,
+#top-mod a:visited {
+	color: #004182;
+}
+
+#top-mod div.moduletable h3 {
+	color: #555;
+}
+
+#top-mod label {
+	color: #058;
+}
+
+#nav-main label {
+	color: #fff;
+}
+#nav-main label1 {
+	color: #000;
+}
+#top-mod div.loginelement input {
+	background: #fff;
+	border: 1px solid #ccc;
+	color: #333;
+}
+
+input.glossbutton {
+	color: #000;
+	background: url(../img/btnImagen-tl.png) 100% 0 no-repeat;
+}
+
+input.glossbutton input {
+	background: url(../img/btnImagen-tr.png) 0 0 no-repeat;
+}
+input.glossbuttonBc {
+	color: #000;
+	background: url(../img/btnImagen-br.png) 100% 0 no-repeat;
+}
+
+input.glossbuttonBc input {
+	background: url(../img/btnImagen-bl.png) 0 0 no-repeat;
+}
+input.glossbuttonB {
+	color: #000;
+	background: url(../img/btnImagen-br.png) 100% 0 no-repeat;
+}
+
+input.glossbuttonB input {
+	background: url(../img/btnImagen-bl.png) 0 0 no-repeat;
+}
+span.loginsubmit,
+span.logoutsubmit,
+span.glossbutton {
+	color: #fff;
+	background: url(../img/login-button-r.png) 100% 0 no-repeat;
+}
+
+
+span.loginsubmit span,
+span.logoutsubmit span,
+span.glossbutton span {
+	background: url(../img/login-button-l.png) 0 0 no-repeat;
+}
+
+
+
+.highlight {
+  background-color: #ffc;
+}
+
+.small,
+.modifydate,
+.createdate {
+	color: #666;
+}
+
+/*Propios Paulina*/
+table {
+color:#000000;
+color:#333;
+/*background-color: #f5f5f8;*/
+}
+th {
+
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+
+border-right:1px solid #ddd;
+  background-color:#6a819d/* #9dacbf*/;
+  color:#fff;
+}
+
+.th1 {
+
+  background-color: #9dacbf;
+  color:#fff;
+}
+
+/*Texto mensajes*/
+.textoError{
+color:red;
+font-weight:bold;
+
+}
+
+.h2_new{
+color:#c6c65b;
+}
+
+
+.tableNew {
+width: 100%;
+border-top: 1px solid #fff;
+border-left: 1px solid #fff;
+border-bottom: 1px solid #fff;
+background-color: #fff;
+clear:both;
+padding: 0;
+margin: 0 0 2em 0;
+white-space: normal;
+}
+
+.botones {
+
+	background-color: #FFAE4a;
+	color: #FFFFFF;
+	border: thin solid #aaa;
+}
+
+.botones_largo {
+
+	background-color: #FFAE4a;
+	color: #FFFFFF;
+	border: thin solid #aaa;
+    
+}
+.botones_pequeno {
+
+	background-color: #FFAE4a;
+	color: #555;
+	border: thin solid #aaa;
+}
+
+.leidos{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+/*	font-weight:bold;*/
+	text-decoration: none;
+}
+.no_leidos {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+    font-style: normal;
+	font-weight: bolder;
+	text-decoration: none;
+}
+.borde_tab {
+	border: thin solid #377584;
+}
+.borde_tab_tomate {
+	border: 2px solid #F7BE81;       
+}
+.paginacion {
+    /*color: #eee;
+	/*background: #426387;*/
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #377584;
+	text-decoration: none;
+	text-align: center;
+}
+
+a.vinculos:link,
+a.vinculos:visited {
+	
+	color: #006699;
+	
+}
+.listado2 {
+
+	color: #000000;
+
+	background-color: #e3e8ec;
+}
+.listado2_ver {
+   background-color:#e3e8ec;
+	color: #000000;
+	
+}
+.listado1_ver {
+
+	color: #000000;
+
+	background-color:#fff;
+
+}
+.titulos2 {
+
+	color: #000000;
+	background-color: #a8bac6;
+
+}
+.titulos5 {
+
+	color: #000000;
+	background-color: #a8bac6;
+
+}
+.titulos4 {
+
+	color: #FFFFFF;
+	background-color: #006699;
+
+}
+
+tr.onmouseover
+{
+    background:#029999;
+
+}
+
+tr.onmouseout {
+    background:white;
+
+}

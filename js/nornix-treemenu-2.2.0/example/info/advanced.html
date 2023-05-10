@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Advanced - Information - Nornix TreeMenu</title><link rel="StyleSheet" href="../style/main.css" type="text/css" media="screen" /><link rel="StyleSheet" href="../style/menu.css" type="text/css" media="screen" /><link rel="StyleSheet" href="../style/print.css" type="text/css" media="print" /><!--[if lte IE 6]><link rel="StyleSheet" href="../style/ie.css" type="text/css" media="screen" /><![endif]--><!--[if lte IE 6]><link rel="StyleSheet" href="../style/ie-menu.css" type="text/css" media="screen" /><![endif]--><!--[if IE 7]><link rel="StyleSheet" href="../style/ie7-menu.css" type="text/css" media="screen" /><![endif]--><script type="text/javascript" src="../script/nornix-treemenu.js"></script><script type="text/javascript" src="../script/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="../favicon.ico" /><link rel="Icon" type="image/x-icon" href="../favicon.ico" /><meta name="generator" content="Nornix CMS / Cms3 build 326 by Anders Nawroth (2007-01-11) www.nornix.com" /><meta http-equiv="imagetoolbar" content="no" /><meta name="MSSmartTagsPreventParsing" content="true" /></head><body><div id="wrapper"><div id="logotype"><img src="../images/treemenu.png" alt="Nornix TreeMenu" width="324" height="53" /></div>
+<a id="menulink" accesskey="m" href="#menu"><span>M</span>enu</a><div class="menu-breadcrumbs" id="menu-breadcrumbs">You are here: <a href="../index.html" title="Nornix TreeMenu">start</a> / <a href="javascript:;" title="Information">info</a> / <a title="Advanced">advanced</a></div>
+<div id="container"><div id="content"><h1>Advanced information</h1>
+
+<h2>What the TreeMenu does</h2>
+
+<h3>DOM manipulation</h3>
+
+<p>Some elements are inserted as hooks for visual effects, click events and keyboard events:</p>
+
+<ul>
+<li>A <code>&lt;span&gt;</code> element is inserted before the link in every folder. This is used to add the <img src="../style/nornix-plus-node.png" alt="plus node" style="float:none; border:none; display:inline; margin:0;" /> and <img src="../style/nornix-minus-node.png" alt="minus node" style="float:none; border:none; display:inline; margin:0;" /> signs.</li>
+<li>A <code>&lt;span&gt;</code> element is also inserted inside the menu item <code>&lt;a&gt;</code> element pointing to the current page. It is used to show the <img src="../style/nornix-treemenu-current.png" alt="current item" style="float:none; border:none; display:inline; margin:0; vertical-align: middle;" /> sign. In the client-side mode, the link to the current page is also removed (as the user should not be able to "navigate" to the current page). The class <code>current</code> is also added to the <code>&lt;a&gt;</code> element.</li>
+<li>Two <code>&lt;a&gt;</code> elements are inserted after the link of the root element, to show the icons to open <img src="../style/nornix-open-icon.png" alt="" style="float:none; border:none; display:inline; margin:0; vertical-align: bottom;" /> and close <img src="../style/nornix-close-icon.png" alt="" style="float:none; border:none; display:inline; margin:0; vertical-align: bottom;" /> all folders.</li>
+<li>In client-side mode following classes are added to the appropriate <code>&lt;li&gt;</code> elements: <code>document</code>, <code>folder</code>, <code>open</code>, <code>closed</code> and <code>last</code>.</li>
+<li>In client-side mode the <code>root</code> class is assigned to the root <code>&lt;a&gt;</code> element.</li>
+<li>In both modes the classes <code>open</code>  and <code>closed</code> on the <code>&lt;li&gt;</code> elements are dynamically changed to reflect the user's behavior. Also the <code>title</code> attribute of the corresponding <code>&lt;a&gt;</code> element is changed to reflect the new action coupled with the <img src="../style/nornix-plus-node.png" alt="plus node" style="float:none; border:none; display:inline; margin:0;" /> and <img src="../style/nornix-minus-node.png" alt="minus node" style="float:none; border:none; display:inline; margin:0;" /> signs.</li>
+</ul>
+
+<h3>DOM events</h3>
+<p>There are a few event handlers to keep track on what the user is doing:</p>
+<ul>
+<li>If <code>config.menuLinkElement</code> is used, a <code>menuJump()</code> event handler is added for <code>click</code> events. The <code>menuJump()</code> function moves the focus to the menu. If you look into the code, you will find some Internet Explorer work-arounds for this.</li>
+<li>The menu itself only needs two event handlers: <code>click</code> and <code>keydown</code> events, dispatching the <code>checkClickDynamic()</code> and <code>checkKeyDynamic()</code> functions.</li>
+<li>Lastly, there is an <code>onunload</code> event handler, <code>save()</code>, which saves the current state of the folders as a cookie.</li>
+</ul>
+
+<p>To make the DOM easy to use in a fast and reliable way all whitespace nodes needs to be removed. Either you send HTML without whitespace in the menu, or the <code>allowWhitespace</code> call parameter should be set to <code>true</code>. It's faster to remove the whitespace once, even client-side, than to traverse to the correct node everywhere.</p>
+
+<h3>CSS magic</h3>
+
+<p>The main trick in painting the menu by using CSS, is that the vertical lines are painted with a CSS border. This makes it easy to scale the menu to accomodate different font sizes, but has the drawback of making dotted lines difficult to use, as long as browsers will paint those in different ways.</p>
+
+<p>To make it easier to get a grip on what's going on, we have made screenshots of the menu elements while using <a href="http://www.getfirebug.com/">Firebug</a> to highlight different parts of the DOM.</p>
+
+<p>This is the entire menu with some padding to the left and at the bottom:</p>
+
+<p>
+<img alt="" src="../images/css-1.gif" style="float:none; border:none;"  />
+</p>
+
+<p>This is the first <code>&lt;ul&gt;</code> element after the root <code>&lt;a&gt;</code> element. It contains the rest of the menu. A margin is applied to put the left border in the correct position (but it is added in the next stage, see below).</p>
+
+<p>
+<img alt="" src="../images/css-2.gif" style="float:none; border:none;"  />
+</p>
+
+<p>Inside the first <code>&lt;ul&gt;</code>, we find it's first <code>&lt;li&gt;</code> element. Left padding is used to indent to the new menu level. A left border is used to create the vertical line.</p>
+
+<p>
+<img alt="" src="../images/css-2b.gif" style="float:none; border:none;"  />
+</p>
+
+<p>Inside this <code>&lt;li&gt;</code> element, we find a <code>&lt;span&gt;</code> element, used as a hook for the <img src="../style/nornix-plus-node.png" alt="plus node" style="float:none; border:none; display:inline; margin:0;" /> and <img src="../style/nornix-minus-node.png" alt="minus node" style="float:none; border:none; display:inline; margin:0;" /> signs. Note that the span is made bigger than the images, to make the clickable area bigger.
+</p>
+
+<p>
+<img alt="" src="../images/css-2c.gif" style="float:none; border:none;"  />
+</p>
+
+<p>The <code>&lt;li&gt;</code> element also contains an <code>&lt;a&gt;</code> element, covering this area:</p>
+
+<p>
+<img alt="" src="../images/css-2d.gif" style="float:none; border:none;"  />
+</p>
+
+<p>After the <code>&lt;a&gt;</code> element, there is an <code>&lt;ul&gt;</code> element with the nested menu items:</p>
+
+<p>
+<img alt="" src="../images/css-2e.gif" style="float:none; border:none;"  />
+</p>
+
+<p>We will look closer on the first <code>&lt;li&gt;</code> element, to examine the structure of a regular menu item. A padding is used to give room for the horisontal line, added as a CSS background image.</p>
+
+<p>
+<img alt="" src="../images/css-3.gif" style="float:none; border:none;"  />
+</p>
+
+<p>The <code>&lt;li&gt;</code> element also handles the vertical line, using a left border, while the nested <code>&lt;a&gt;</code> element puts the document icon in place:</p>
+
+<p>
+<img alt="" src="../images/css-4.gif" style="float:none; border:none;"  />
+</p>
+
+<p>In this case there is also an empty <code>&lt;span&gt;</code> element, used to add the <img src="../style/nornix-treemenu-current.png" alt="current item" style="float:none; border:none; display:inline; margin:0; vertical-align: middle;" /> sign:</p>
+
+<p>
+<img alt="" src="../images/css-5.gif" style="float:none; border:none;"  />
+</p>
+
+<p>Finally, some <code>&lt;li&gt;</code> element has to be the last one in every <code>&lt;ul&gt;</code>. Caused by Internet Explorer 6, we can't rely solely on the <code>:last-child</code> <a href="http://www.w3.org/TR/CSS21/selector.html#first-child">pseudo-class</a>, so these  <code>&lt;li&gt;</code> elements get the class <code>last</code> added. The left border is removed, and a background image of a corner is added.</p>
+
+<p>
+<img alt="" src="../images/css-6.gif" style="float:none; border:none;"  />
+</p>
+<div class="pageinfo">Last modified: 2008-02-02<br /></div><!--[if lte IE 6]><span id="em">—</span><![endif]-->
+<div style="clear:both;height:0.5em;"></div></div></div>
+<div id="navigation">
+<div id="menu" class="menu"><a href="../index.html" title="Nornix TreeMenu">start</a><ul><li><a href="javascript:;" title="Information">info</a><ul><li><a href="features.html" title="Features">features</a></li><li><a href="functions.html" title="Functions">functions</a></li><li><a href="quick-start.html">quick-start</a></li><li><a href="javascript:;" title="Usage">usage</a><ul><li><a href="usage/how-to.html" title="How to use Nornix TreeMenu">how-to</a></li><li><a href="usage/html.html" title="HTML structure">HTML</a></li><li><a href="usage/css.html" title="CSS classes">CSS</a></li><li><a href="usage/js.html" title="JS behavior">JS</a></li><li><a href="usage/images.html" title="Images">images</a></li></ul>
+</li><li><a href="compatibility.html" title="Compatibility">compatibility</a></li><li><a href="flavours.html" title="Flavours">flavours</a></li><li><a href="skins.html" title="Skins">skins</a></li><li><a href="layers.html" title="Layers">layers</a></li><li><a href="advanced.html" title="Advanced">advanced</a></li></ul>
+</li><li><a href="../license.html">license</a></li><li><a href="javascript:;">folder one</a><ul><li><a href="../folder1/doc1.html">document one</a></li><li><a href="../folder1/doc2.html">document two</a></li></ul>
+</li><li><a href="javascript:;">ajax page load</a><ul><li><a href="javascript:;">folder three</a><ul><li><a href="../folder2/folder3/doc3.html">document three</a></li><li><a href="../folder2/folder3/doc4.html">document four</a></li></ul>
+</li><li><a href="javascript:;">folder four</a><ul><li><a href="../folder2/folder4/doc5.html">document five</a></li><li><a href="../folder2/folder4/doc6.html">document six</a></li><li><a href="javascript:;">folder five</a><ul><li><a href="../folder2/folder4/folder5/doc7.html">document seven</a></li></ul>
+</li></ul>
+</li></ul>
+</li><li><a href="../download.html">download</a></li><li><a href="../contact.html">contact</a></li><li><a href="../toc.html" title="Contents">contents</a></li></ul>
+</div><div id="tools"></div>
+<div id="buttons">
+<a href="http://nornix.sourceforge.net/"><img src="../images/nornix-javascript.png" alt="Nornix JavaScript" width="88" height="31" /></a>
+<a href="http://sourceforge.net/donate/index.php?group_id=164828"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" alt="Support This Project"  style="border:none;" /></a>
+<a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=164828&amp;type=1" width="88" height="31" alt="SourceForge.net Logo" /></a>
+</div>
+</div>
+<div id="footer">Nornix TreeMenu</div>
+<div style="clear:both;height:0.5em;"></div>
+</div></body>
+</html>

@@ -1,0 +1,14 @@
+/* tree checkbox, height/width needed b/c of IE spacing weirdly, breaks lines */
+input.l-tcb {
+	height:13px;
+	width:13px;
+	margin-left:2px
+}
+
+
+/* fix scrolling issue with treeobj in a contentpanel 
+ * and loss of icons when a node is expanded
+*/
+.ext-ie .x-tree {
+	position:static !important;
+}

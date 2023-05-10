@@ -1,0 +1,13 @@
+/home/src/main/java/ec/gob/firmadigital/api/ServicioEstadisticaDocumentosFirmados.java
+/home/src/main/java/ec/gob/firmadigital/api/ServicioEstadisticaUsuarios.java
+/home/src/main/java/ec/gob/firmadigital/api/ServicioApiUrl.java
+/home/src/main/java/ec/gob/firmadigital/api/ServicioAppValidarCertificadoDigital.java
+/home/src/main/java/ec/gob/firmadigital/api/ServicioAppFirmarDocumentoTransversal.java
+/home/src/main/java/ec/gob/firmadigital/api/ServicioCertificado.java
+/home/src/main/java/ec/gob/firmadigital/api/ServicioVerificarDocumentoFirmado.java
+/home/src/main/java/ec/gob/firmadigital/api/ServicioFechaHora.java
+/home/src/main/java/ec/gob/firmadigital/api/ServicioAppFirmarDocumento.java
+/home/src/main/java/ec/gob/firmadigital/api/ServicioVersion.java
+/home/src/main/java/ec/gob/firmadigital/api/ServicioAppVerificarDocumento.java
+/home/src/main/java/ec/gob/firmadigital/api/ServicioFirmaDigital.java
+/home/src/main/java/ec/gob/firmadigital/api/JAXRSConfiguration.java

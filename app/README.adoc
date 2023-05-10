@@ -1,0 +1,15 @@
+= Firma Digital: API
+
+Este proyecto implementa los servicios REST para la aplicación de Firma Digital de la Secretaría Nacional de la Administración Pública del Ecuador.
+
+== Cómo compilar
+
+Para compilar:
+
+----
+mvn clean package
+----
+
+== Cómo desplegar
+
+Se debe copiar el archivo `target/api.war` a la carpeta `standalone/deploy` de un servidor de aplicaciones WildFly 21.0.2

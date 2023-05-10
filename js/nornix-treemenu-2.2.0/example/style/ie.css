@@ -1,0 +1,52 @@
+/* Nornix TreeMenu IE stylesheet  */
+
+@media screen
+{
+
+/* layout  */
+
+#em
+{
+	visibility: hidden;
+}
+
+#content
+{
+	float: right;
+}
+#wrapper
+{
+	width: 740px;
+	width:expression(
+(document.getElementById("em").offsetWidth*59 <
+document.body.clientWidth) ? "59.5em" : "auto"
+        );
+}
+pre
+{
+	font-size: 0.87em;
+}
+
+h1
+{
+	height: 35px;
+}
+
+button
+{
+	line-height: 1.2;
+}
+
+}
+
+/* PRINT STYLES */
+
+@media print
+{
+
+#content
+{
+	width: 135mm;
+}
+
+}

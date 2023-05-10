@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+    #modulo wildfly
+    wildfly:
+        build: wildfly
+        volumes:
+            - ./app:/home/
+        #    - ./deployments/:/opt/jboss/wildfly/standalone/deployments/
+        ports:
+            - "8431:8080"
+            - "8432:9990"
+            - "8433:8009"

@@ -1,0 +1,236 @@
+/* @group big buttons */
+
+#nav-big {
+}
+
+#nav-big ul {
+	list-style: none;
+	padding: 0;
+	margin:  0;
+}
+
+#nav-big ul li {
+	float: left;
+	display:  block;
+	width: 60px;
+	height: 67px;
+	padding: 0;
+	margin: 0 3px 0 0;
+}
+
+#nav-big ul a {
+	display:  block;
+	overflow: hidden;
+	text-align: center;
+	font-weight: normal;
+	height: 70px;
+	line-height:75px;
+	text-decoration: none;
+	font-size: 85%;
+}
+
+/* @end */
+
+/* @group main menu */
+/* Works for "buttonmenu" and "splitmenu" */
+#nav-main {
+	overflow: hidden;
+	height: 37px;
+}
+
+#nav-main ul {
+	padding: 0 0 0 2px;
+	margin: 0;
+	float: left;
+	list-style: none;
+}
+
+#nav-main li {
+	margin: 0;
+	padding: 0;
+	float: left;
+	display: block;
+	background: none;
+}
+
+
+
+#nav-main a {
+
+	display: block;
+
+	float: left;
+
+	height: 27px;
+
+	line-height: 27px;
+
+	padding: 0 10px;
+
+	text-decoration: none;
+
+	cursor: pointer;
+
+	background: none;
+
+}
+
+
+
+ul.submenu {
+	padding: 0;
+	margin: 0;
+}
+
+/* @end */
+
+/* @group vert menu */
+/* Works for "buttonmenu" and "splitmenu" */
+
+div#menu_vert ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	
+}
+
+div#menu_vert ul.sidenav li {
+	border: 0;
+	margin: 0px;
+	padding: 0;
+	padding-left:20px;
+}
+
+div#menu_vert ul li a {
+	display: block;
+	padding: 6px 0 4px 0;
+	margin-bottom: 2px;
+	text-decoration: none;
+}
+
+div#menu_vert ul.sidenav ul li a {
+	padding: 2px 0;
+}
+
+div#menu_vert ul.sidenav ul {
+	padding-bottom: 5px;
+}
+
+div#menu_vert ul.sidenav ul li {
+  padding-left: 20px;
+  background: none;
+  border: 0;
+  margin: 0;
+}
+
+div#menu_vert ul.sidenav ul li a {
+	padding: 2px 0;
+	margin: 0;
+}
+
+div#menu_vert ul.sidenav ul ul li {
+	margin: 0;
+	padding: 0;
+  margin-left: 30px;
+  background: none;
+  border:  0;
+}
+
+div#menu_vert li.active_menu a {
+	font-weight: bold;
+}
+
+div#menu_vert li.active_menu li a {
+	font-weight: normal;
+}
+/*Propios Paulina*/
+
+table {
+font-family:Arial, Helvetica, sans-serif;
+font-size:11px;
+/*border-top: 1px solid #ccc;
+border-left: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+border-right:1px solid #ccc;*/
+clear:both;
+padding: 0;
+margin: 0 0 0 0;
+white-space: normal;
+}
+th {
+  font-weight:bold;
+  font-size:11px;
+  text-align:left;
+ padding:3px;
+  height:15px;
+}
+.h2_new{
+padding-top: 1em;
+padding-left: 1em;
+margin:0.3em 0;
+}
+
+.th1 {
+text-align: center;
+
+}
+
+.botones {
+	font-family: Verdana;
+	font-size: 12px;
+	font-weight: bolder;
+	text-align: center;
+}
+.botones_largo {
+	font-family: Verdana;
+	font-size: 12px;
+	font-weight: bolder;
+	text-align: center;
+}
+.botones_pequeno {
+ font-family: Verdana;
+	font-size: 10px;
+	text-align: center;
+}
+a.grid:link,
+a.grid:visited, a.gid:hover {
+ 	font-size: 11px;
+}
+a:link,
+a:visited, a:hover {
+ 	font-size: 11px;
+}
+a.vinculos:link,
+a.vinculos:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: bolder;
+
+	text-align: left;
+	text-indent: 5pt;
+	vertical-align: middle;
+}
+.listado2{
+    height: 20px;
+}
+.listado2_ver {
+    height: 20px;
+}
+
+.listado1_ver {
+
+	height: 20px;
+}
+.titulos2 {
+
+	height: 15px;
+}
+
+.titulos4 {
+
+
+	height: 18px;
+}
+
+/* @end */

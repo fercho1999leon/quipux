@@ -1,0 +1,13 @@
+ec/gob/firmadigital/api/ServicioAppVerificarDocumento.class
+ec/gob/firmadigital/api/ServicioAppValidarCertificadoDigital.class
+ec/gob/firmadigital/api/ServicioApiUrl.class
+ec/gob/firmadigital/api/JAXRSConfiguration.class
+ec/gob/firmadigital/api/ServicioFirmaDigital.class
+ec/gob/firmadigital/api/ServicioVerificarDocumentoFirmado.class
+ec/gob/firmadigital/api/ServicioEstadisticaDocumentosFirmados.class
+ec/gob/firmadigital/api/ServicioAppFirmarDocumentoTransversal.class
+ec/gob/firmadigital/api/ServicioVersion.class
+ec/gob/firmadigital/api/ServicioEstadisticaUsuarios.class
+ec/gob/firmadigital/api/ServicioAppFirmarDocumento.class
+ec/gob/firmadigital/api/ServicioFechaHora.class
+ec/gob/firmadigital/api/ServicioCertificado.class

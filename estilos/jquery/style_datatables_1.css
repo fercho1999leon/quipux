@@ -1,0 +1,161 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables display
+ */
+table.display {
+	margin: 0 auto;
+	clear: both;
+	font-family:arial;
+	background-color: #69809c;
+	font-size: 8pt;
+	text-align: left;
+        border: thin solid #377584;
+}
+
+table.display thead th {
+        background-color:#6a819d/* #9dacbf*/;
+        color:#fff;
+        border: 1px solid #FFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+        padding: 2px 15px 2px 2px;
+        font-weight: bold;
+        cursor: pointer;
+        height: 25px;
+        vertical-align: middle;
+}
+
+table.display tr.heading2 td {
+	border-bottom: 1px solid #aaa;
+}
+
+table.display td {	
+	padding: 2px 5px;
+	vertical-align: middle;
+}
+
+table.display td.center {
+	text-align: center;
+}
+
+table.display tr.odd.gradeX {
+	background-color: #fff; 
+}
+
+table.display tr.even.gradeX {
+	background-color: #E2E7Eb;
+}
+
+tr.odd {
+/*	background-color: #E2E4FF;*/
+	color: #000000;
+        background-color: #FFFFFF;
+	height: 22px;
+	font-family: Arial, Helvetica, sans-serif;
+        font-size: 10px;
+}
+
+tr.even {
+        color: #000000;
+	background-color: #e3e8ec;
+        height: 22px;
+	font-family: Arial, Helvetica, sans-serif;
+        font-size: 10px;
+/*	background-color: white;*/
+}
+
+
+
+.example_alt_pagination div.dataTables_info {
+	width: 100%;
+}
+
+/*
+ * Row highlighting example
+ */
+.ex_highlight #example tbody tr.even:hover, #example tbody tr.even td.highlighted {
+	background-color: #ECFFB3;
+}
+
+.ex_highlight #example tbody tr.odd:hover, #example tbody tr.odd td.highlighted {
+	background-color: #E6FF99;
+}
+
+/* Pagination nested */
+.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next {
+	height: 19px;
+	width: 19px;
+	margin-left: 3px;
+	float: left;
+}
+
+.paginate_disabled_previous {
+	background-image: url('back_disabled.jpg');
+}
+
+.paginate_enabled_previous {
+	background-image: url('back_enabled.jpg');
+}
+
+.paginate_disabled_next {
+	background-image: url('forward_disabled.jpg');
+}
+
+.paginate_enabled_next {
+	background-image: url('forward_enabled.jpg');
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables sorting
+ */
+
+.sorting_asc {
+	background: url('sort_asc.png') no-repeat center right;
+}
+
+.sorting_desc {
+	background: url('sort_desc.png') no-repeat center right;
+}
+
+.sorting {
+	background: url('sort_both.png') no-repeat center right;
+}
+
+.sorting_asc_disabled {
+	background: url('sort_asc_disabled.png') no-repeat center right;
+}
+
+.sorting_desc_disabled {
+	background: url('sort_desc_disabled.png') no-repeat center right;
+}
+
+/*
+ * KeyTable
+ */
+table.KeyTable td {
+	border: 3px solid transparent;
+}
+
+table.KeyTable td.focus {
+	border: 3px solid #3366FF;
+}
+
+table.display tr.gradeX {
+	background-color: #ddddff;
+}
+
+div.box {
+	height: 100px;
+	padding: 10px;
+	overflow: auto;
+	border: 1px solid #8080FF;
+	background-color: #E5E5FF;
+}
+
+/*
+ * Sorting classes for columns
+ */
+/*Estilo para tablas de reportes */
+table.display tr.gradeC {
+	background-color: #e3e8ec;
+}
+

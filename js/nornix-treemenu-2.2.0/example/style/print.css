@@ -1,0 +1,17 @@
+ /* PRINT STYLES */
+
+body
+{
+	font: normal 11pt/1.3 Georgia, serif;
+	color: #000000;
+	margin: 0 0 0 20mm;
+}
+#navigation, form, #menulink
+{
+	display: none;
+}
+#content
+{
+	width: 90%;
+}
+

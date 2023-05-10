@@ -1,0 +1,3 @@
+[23-Mar-2023 14:11:11 America/Guayaquil] PHP Fatal error:  Call to a member function __getLastResponse() on null in /home/quipuxitred/public_html/interconexion/generar_pdf.php on line 56
+[23-Mar-2023 14:11:20 America/Guayaquil] PHP Fatal error:  Call to a member function __getLastResponse() on null in /home/quipuxitred/public_html/interconexion/generar_pdf.php on line 56
+[23-Mar-2023 14:12:04 America/Guayaquil] PHP Fatal error:  Call to undefined method SoapFault::__getLastResponse() in /home/quipuxitred/public_html/interconexion/generar_pdf.php on line 56

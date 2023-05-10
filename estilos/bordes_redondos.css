@@ -1,0 +1,93 @@
+.borde-left{ /*Tablas*/
+    -webkit-border-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background:/*#4774AB;/*#0F5BA8;#D38785;*/#C0504E;
+    width:400px;
+    height:370px;
+    margin:0 auto;
+}
+.borde-left-externo{ /*Tablas*/
+    -webkit-border-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+      border: thick solid #4774AB;
+    width:400px;
+    height:370px;
+    margin:0 auto;
+}
+.borde-center{
+    -webkit-border-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+    
+    background:/*#6288BC;#9ec45c;#EECA5B;#1C84EC;#6288BC;*/#bfb256;
+    width:400px;
+    height:370px;
+    margin:0 auto;
+}
+.borde-center-externo{
+    -webkit-border-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: thick solid #4774AB;
+    
+    width:400px;
+    height:370px;
+    margin:0 auto;
+}
+.borde-right{
+    -webkit-border-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+     
+    background:#7194AE;/*#819DEE;/*#99ABEA;#3692A9;*/
+    width:400px;
+    height:370px;
+    margin:0 auto;
+}
+.borde-right-externo{
+    -webkit-border-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+     border: thick solid #4774AB;
+    width:400px;
+    height:370px;
+    margin:0 auto;
+}
+.botones_index {
+    -webkit-border-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -moz-border-radius: 8px;
+    -moz-border-radius-bottomleft: 8px;
+    border-radius: 10px;
+    border-bottom-left-radius: 10px;
+    cursor: pointer;
+    height: 30px;
+    width: 150px;
+    font-family: Verdana;
+    font-size: 10px;
+    font-weight: bolder;
+    text-align: center;
+    background-color: #FFAE4A;
+    border: thin solid #AAAAAA;
+    color: #000000;
+}

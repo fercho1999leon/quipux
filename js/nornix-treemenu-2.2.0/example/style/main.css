@@ -1,0 +1,301 @@
+/* MAIN stylesheet  */
+
+
+/* GENERAL */
+html, body
+{
+	font: normal 100%/1.5 Constantia, Georgia, serif;
+	color: #000000;
+	background: #fafafa;
+	padding: 0;
+	margin: 0;
+}
+body, table, th, tr, td, caption, select, input, button, pre
+{
+	font-size: 100%;
+}
+img
+{
+	border: none;
+}
+form
+{
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, h1 code, h2 code, h3 code
+{
+	font-family: Candara, Helvetica, Arial, sans-serif;
+}
+
+
+/* LAYOUT */
+#logotype
+{
+	background: #fafafa url(../images/linje.png) repeat-x 0 100%;
+	padding-left: 0.5em;
+	margin-bottom: 0.33em;
+	height: 67px;
+}
+#logotype img
+{
+	display: block;
+	font: bold 1.8em Verdana, sans-serif;
+	color: #929769;
+}
+#container
+{
+	width: 100%;
+	float: right;
+	margin-left: -16.3em;
+}
+#content
+{
+	margin-left: 16.3em;
+	padding: 0 5px;
+	max-width: 41em;
+	margin-top: 0em;
+}
+#menulink, a:hover#menulink a:link#menulink
+{
+	margin: 0 0.5em !important;
+	color: #000000 !important;
+	border: none !important;
+}
+#menulink span
+{
+	text-decoration: underline;
+}
+#navigation
+{
+	width: 15.8em;
+	float: left;
+	margin-top: 0.67em;
+}
+#buttons
+{
+	margin: 1em;
+}
+#buttons a
+{
+	display: block;
+	margin: 0.5em 0;
+}
+#buttons a:hover
+{
+	background: none;
+}
+#footer
+{
+	display: none;
+	clear: both;
+	margin-left: 0.5em;
+	padding-top: 4px;
+}
+
+/* GENERAL STYLING */
+
+#navigation div a
+{
+	border: none;
+}
+
+/* LINKS */
+a, a:link
+{
+	color: #341C8C;
+	padding: 0 0.15em 1px 0.15em;
+	text-decoration: none;
+	border-bottom: 1px solid #341C8C;
+}
+a:visited
+{
+	border-color: #C2C2C2;
+}
+a:hover, a:active, a:focus, #tools .admin-icon img:hover,
+#content a[href^="http:"]:hover, a[href^="https:"]:hover,
+#content a[href^="http:"]:active, a[href^="https:"]:active,
+#content a[href^="http:"]:focus, a[href^="https:"]:focus
+{
+	background-color: #CFD986;
+	color: #000000;
+}
+#content a[href^="http:"], a[href^="https:"]
+{
+	padding-right: 18px;
+	background: url(../images/applications-internet.png) no-repeat 100% 0;
+}
+
+
+/* BORDERS */
+
+.submitbutton
+{
+	border: 1px solid #aaaaaa;
+	border-right: 2px solid #888888;
+	border-bottom: 2px solid #888888;
+}
+
+
+/* TEXT */
+
+p
+{
+	margin: 0 0 0.67em 0;
+}
+
+blockquote
+{
+	margin: 0;
+	padding: 0.25em 0 0.25em 53px;
+	background: url(../images/citat.png) no-repeat 0 0.5em;
+}
+h1, h2, h3
+{
+	color: #333333;
+	margin: 0.3em 0 0 0;
+}
+h1
+{
+	padding: 0 0 3px 38px;
+	background: url(../images/fyrkant.png) no-repeat 0 center;
+	min-height: 35px;
+	margin-top: 0;
+}
+h2
+{
+	font-size: 1.6em;
+}
+h3
+{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+code, kbd
+{
+	font-family: "Consolas", monospace;
+	font-weight: bold;
+	color: #4e9a06;
+}
+kbd
+{
+	color: #ce5c00;
+}
+pre
+{
+	font-family: "Consolas", monospace;
+	padding: 0.67em;
+	font-size: 0.875em;
+	background: #f7e8a3;
+	border: 1px solid #666666;
+}
+
+/* LISTS */
+dt
+{
+	float: left;
+	clear: left;
+	margin-right:0.5em;
+	background: #eeeeee;
+	padding: 0 0.15em;
+}
+dd
+{
+	clear: right;
+	margin: 0 0 .6em 2em;
+}
+#content ul
+{
+	margin: 0.3em 0;
+	padding: 0;
+}
+#content ol
+{
+	margin: 0.3em 0 0.3em 2em;
+	padding: 0;
+}
+#content ul li
+{
+	list-style: none;
+	padding: 0 0 7px 20px;
+	background: url(../images/bomb.png) 0 6px no-repeat;
+}
+#content ol li
+{
+	margin: 0.33em 0;
+}
+
+
+
+/* TABLES */
+table
+{
+	margin: 0 0 6px 0;
+	border-top: 1px solid #888888;
+	border-left: 1px solid #888888;
+}
+fieldset table
+{
+	border: none;
+}
+td
+{
+	margin: 0;
+	padding: 3px 5px;
+	font-size: 0.87em;
+}
+fieldset td
+{
+	padding: 0 0 5px 4px;
+	font-size: 1em;
+	width: 30ex;
+}
+th
+{
+	margin: 0;
+	padding: 1px 3px;
+	border-right: 1px solid #aaaaaa;
+	border-bottom: 1px solid #aaaaaa;
+	font-size: 0.80em;
+}
+caption
+{
+	margin: 0;
+	padding: 12px 0 0.3em 0.3em;
+	text-align: left;
+	font-weight: bold;
+	white-space: nowrap;
+}
+#content table img
+{
+	border: none;
+	background: transparent;
+}
+.compatibility td
+{
+	text-align: center;
+}
+
+
+/* NAVIGATION */
+
+.menu-breadcrumbs
+{
+	display: inline;
+	margin: 0 0 0.7em 0.5em;
+	font-size: 0.93em;
+}
+.menu-breadcrumbs a
+{
+	color: #000000;
+	padding: 1px;
+}
+.menu-breadcrumbs a:link, .menu-breadcrumbs a:visited
+{
+	border-bottom: 1px solid #341C8C;
+}
+.menu-breadcrumbs a
+{
+	border: none;
+}
+

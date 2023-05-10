@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Quick start - Information - Nornix TreeMenu</title><link rel="StyleSheet" href="../style/main.css" type="text/css" media="screen" /><link rel="StyleSheet" href="../style/menu.css" type="text/css" media="screen" /><link rel="StyleSheet" href="../style/print.css" type="text/css" media="print" /><!--[if lte IE 6]><link rel="StyleSheet" href="../style/ie.css" type="text/css" media="screen" /><![endif]--><!--[if lte IE 6]><link rel="StyleSheet" href="../style/ie-menu.css" type="text/css" media="screen" /><![endif]--><!--[if IE 7]><link rel="StyleSheet" href="../style/ie7-menu.css" type="text/css" media="screen" /><![endif]--><script type="text/javascript" src="../script/nornix-treemenu.js"></script><script type="text/javascript" src="../script/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="../favicon.ico" /><link rel="Icon" type="image/x-icon" href="../favicon.ico" /><meta name="generator" content="Nornix CMS / Cms3 build 326 by Anders Nawroth (2007-01-11) www.nornix.com" /><meta http-equiv="imagetoolbar" content="no" /><meta name="MSSmartTagsPreventParsing" content="true" /></head><body><div id="wrapper"><div id="logotype"><img src="../images/treemenu.png" alt="Nornix TreeMenu" width="324" height="53" /></div>
+<a id="menulink" accesskey="m" href="#menu"><span>M</span>enu</a><div class="menu-breadcrumbs" id="menu-breadcrumbs">You are here: <a href="../index.html" title="Nornix TreeMenu">start</a> / <a href="javascript:;" title="Information">info</a> / <a title="quick-start">quick-start</a></div>
+<div id="container"><div id="content"><h1>Quick start</h1>
+
+<h2>HTML <code>&lt;head&gt;</code> changes</h2>
+<p>Insert this code in the <code>&lt;head&gt;</code> section of your HTML files:</p>
+
+<pre>
+&lt;link rel="StyleSheet"
+ href="../style/menu.css" type="text/css" media="screen" /&gt;
+&lt;!–[if lte IE 6]&gt;
+&lt;link rel="StyleSheet"
+ href="../style/ie-menu.css" type="text/css" media="screen" /&gt;
+&lt;![endif]–&gt;
+&lt;!–[if IE 7]&gt;
+&lt;link rel="StyleSheet"
+ href="../style/ie7-menu.css" type="text/css" media="screen" /&gt;
+&lt;![endif]–&gt;
+&lt;script type="text/javascript" src="/script/nornix-treemenu.js"&gt;
+</pre>
+
+<p>To use the provided CSS files, your HTML pages need to use <em>standards mode</em>, as opposed to <a href="http://en.wikipedia.org/wiki/Quirks_mode">quirks mode</a>. Please visit the linked Wikipedia page for more information.</p>
+<p>Below you find a few <a href="http://www.w3.org/QA/2002/04/valid-dtd-list.html">Doctype declarations</a> that will keep the browser rendering engine in standards mode. For more in-depth information, visit the <a href="http://www.quirksmode.org/css/quirksmode.html">Quirks Mode site</a> by PPK.</p>
+
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd"&gt;
+</pre>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd"&gt;
+</pre>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+</pre>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+</pre>
+
+
+<h2>Files</h2>
+<p>Add files to folders on your web server:</p>
+<ul>
+<li>The selected <em>skin files</em> should be copied to the <code>/style</code> folder.</li>
+<li>The <code>nornix-treemenu.js</code> file should be copied to the <code>/script</code> folder.</li>
+</ul>
+
+<h2>Menu HTML</h2>
+
+<p>The menu is built with a containing <code>&lt;div&gt;</code> element, and then <code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code> and <code>&lt;a&gt;</code> elements are used.</p>
+
+<p>To get the correct HTML structure in the menu, please refer to the example code below. In this case <code>"javascript:;"</code> is used for the folder items, but normal links could be used as well.</p>
+
+<pre>&lt;div id="menu" class="menu"&gt;<br />  &lt;a href="/" title="Nornix TreeMenu"&gt;start&lt;/a&gt;<br />  &lt;ul&gt;<br />    &lt;li&gt;<br />      &lt;a href="javascript:;" title="Information"&gt;info&lt;/a&gt;<br />      &lt;ul&gt;<br />        &lt;li&gt;<br />          &lt;a href="/info/features"&gt;features&lt;/a&gt;<br />        &lt;/li&gt;<br />        &lt;li&gt;<br />          &lt;a href="/info/layers"&gt;layers&lt;/a&gt;<br />        &lt;/li&gt;<br />        &lt;li&gt;<br />          &lt;a href="/info/compatibility"&gt;compatibility&lt;/a&gt;<br />        &lt;/li&gt;<br />        &lt;li&gt;<br />          &lt;a href="javascript:;"&gt;usage&lt;/a&gt;<br />          &lt;ul&gt;<br />            &lt;li&gt;<br />              &lt;a title="HTML structure"&gt;HTML&lt;/a&gt;<br />            &lt;/li&gt;<br />            &lt;li&gt;<br />              &lt;a href="/info/usage/css" title="CSS classes"&gt;CSS&lt;/a&gt;<br />            &lt;/li&gt;<br />            &lt;li&gt;<br />              &lt;a href="/info/usage/js" title="JS behavior"&gt;JS&lt;/a&gt;<br />            &lt;/li&gt;<br />          &lt;/ul&gt;<br />        &lt;/li&gt;<br />      &lt;/ul&gt;<br />    &lt;/li&gt;<br />    &lt;li&gt;<br />      &lt;a href="/license"&gt;license&lt;/a&gt;<br />    &lt;/li&gt;<br />    &lt;li&gt;<br />      &lt;a href="/contact"&gt;contact&lt;/a&gt;<br />    &lt;/li&gt;<br />  &lt;/ul&gt;<br />&lt;/div&gt; <br /></pre>
+
+<h2>More information</h2>
+<p>For information in detail, read the <a href="usage/how-to.html">how-to page</a> and the other pages in the usage-folder.</p><div class="pageinfo">Last modified: 2008-02-11<br /></div><!--[if lte IE 6]><span id="em">—</span><![endif]-->
+<div style="clear:both;height:0.5em;"></div></div></div>
+<div id="navigation">
+<div id="menu" class="menu"><a href="../index.html" title="Nornix TreeMenu">start</a><ul><li><a href="javascript:;" title="Information">info</a><ul><li><a href="features.html" title="Features">features</a></li><li><a href="functions.html" title="Functions">functions</a></li><li><a href="quick-start.html">quick-start</a></li><li><a href="javascript:;" title="Usage">usage</a><ul><li><a href="usage/how-to.html" title="How to use Nornix TreeMenu">how-to</a></li><li><a href="usage/html.html" title="HTML structure">HTML</a></li><li><a href="usage/css.html" title="CSS classes">CSS</a></li><li><a href="usage/js.html" title="JS behavior">JS</a></li><li><a href="usage/images.html" title="Images">images</a></li></ul>
+</li><li><a href="compatibility.html" title="Compatibility">compatibility</a></li><li><a href="flavours.html" title="Flavours">flavours</a></li><li><a href="skins.html" title="Skins">skins</a></li><li><a href="layers.html" title="Layers">layers</a></li><li><a href="advanced.html" title="Advanced">advanced</a></li></ul>
+</li><li><a href="../license.html">license</a></li><li><a href="javascript:;">folder one</a><ul><li><a href="../folder1/doc1.html">document one</a></li><li><a href="../folder1/doc2.html">document two</a></li></ul>
+</li><li><a href="javascript:;">ajax page load</a><ul><li><a href="javascript:;">folder three</a><ul><li><a href="../folder2/folder3/doc3.html">document three</a></li><li><a href="../folder2/folder3/doc4.html">document four</a></li></ul>
+</li><li><a href="javascript:;">folder four</a><ul><li><a href="../folder2/folder4/doc5.html">document five</a></li><li><a href="../folder2/folder4/doc6.html">document six</a></li><li><a href="javascript:;">folder five</a><ul><li><a href="../folder2/folder4/folder5/doc7.html">document seven</a></li></ul>
+</li></ul>
+</li></ul>
+</li><li><a href="../download.html">download</a></li><li><a href="../contact.html">contact</a></li><li><a href="../toc.html" title="Contents">contents</a></li></ul>
+</div><div id="tools"></div>
+<div id="buttons">
+<a href="http://nornix.sourceforge.net/"><img src="../images/nornix-javascript.png" alt="Nornix JavaScript" width="88" height="31" /></a>
+<a href="http://sourceforge.net/donate/index.php?group_id=164828"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" alt="Support This Project"  style="border:none;" /></a>
+<a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=164828&amp;type=1" width="88" height="31" alt="SourceForge.net Logo" /></a>
+</div>
+</div>
+<div id="footer">Nornix TreeMenu</div>
+<div style="clear:both;height:0.5em;"></div>
+</div></body>
+</html>

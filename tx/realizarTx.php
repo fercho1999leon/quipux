@@ -52,6 +52,19 @@ echo "<html>".html_head();
     $usua_nomb = $_SESSION['usua_nomb'];
     $depe_nomb = $_SESSION['depe_nomb'];
     $chk_reasigna_padre = $_POST['chk_reasigna_padre'];
+    //FIRMA ELECTRONICA
+    $file_firma = null;
+    if(isset($_FILES['fileFirma'])) {
+        $archivo = $_FILES['fileFirma']['tmp_name'];
+        $file_firma= $archivo ? file_get_contents($archivo) : null;
+        $file_firma = $file_firma != null ? base64_encode($file_firma):null;
+    }
+    $password_firma = null;
+    if(isset($_POST['passwordFirma'])) {
+        $password_firma = $_POST['passwordFirma'];
+    }
+    
+    //return var_dump($file_firma != null ? base64_encode($file_firma):null);
 
     $whereFiltro = "0";
     if(isset($_POST['checkValue'])) {		//Si se escogieron radicados de la lista
@@ -151,7 +164,7 @@ switch ($codTx)
                 die("<script>alert('Usted no tiene permiso para firmar digitalmente documentos.".
                     " Consulte con su administrador del sistema.');</script>");
             }
-            $tx->reintentarEnvioElectronicoDocumento($radicadosSel, $_SESSION["usua_codi"], $observa);
+            $tx->reintentarEnvioElectronicoDocumento($radicadosSel, $_SESSION["usua_codi"], $observa, $file_firma , $password_firma);
             $usCodDestino=ObtenerUsuariosRadicado($db,$radicadosSel,'para');
             correoBandejaCompartidas($radicadosSel,$db,$ruta_raiz,1);
             break;
@@ -249,20 +262,20 @@ switch ($codTx)
             $tx->GenerarDocumentosEnvio($radicadosSel, $_SESSION["usua_codi"], $observa);
             $flag_firmar = $tx->cambioEstadoDocumentoGenerado($radicadosSel);
             if ($flag_firmar==1){ 
-                $tx->enviarDocumentosFirmaElectronica($radicadosSel);
+                $tx->enviarDocumentosFirmaElectronica($radicadosSel, $file_firma , $password_firma);
                 correoBandejaCompartidas($radicadosSel,$db,$ruta_raiz,1);
+            }
+            foreach ($radicadosSel as $tmpRad) {                
+                $radtmp=ObtenerDatosRadicado($tmpRad, $db);
+                $radi_usua_re= $radtmp['usua_redirigido'];//cargo redirigido de los documentos
+                if ($radi_usua_re!=0){                        
+                    $usrDest = ObtenerDatosUsuario($radi_usua_re, $db);
+                    //cargo de todos los doc seleccionados
+                    $usCodDestino.= $usrDest['nombre']."<br>";
+                }else{
+                    if ($tmpRad!='')
+                    $radiPen[] = $tmpRad;
                 }
-                foreach ($radicadosSel as $tmpRad) {                
-                    $radtmp=ObtenerDatosRadicado($tmpRad, $db);
-                    $radi_usua_re= $radtmp['usua_redirigido'];//cargo redirigido de los documentos
-                    if ($radi_usua_re!=0){                        
-                        $usrDest = ObtenerDatosUsuario($radi_usua_re, $db);
-                        //cargo de todos los doc seleccionados
-                        $usCodDestino.= $usrDest['nombre']."<br>";
-                    }else{
-                        if ($tmpRad!='')
-                        $radiPen[] = $tmpRad;
-                    }
             }
             //hago la busqueda con los que quedaron pendientes
             //documentos que no tienen redirigido

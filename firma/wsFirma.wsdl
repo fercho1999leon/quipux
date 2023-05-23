@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions name="soapapihtml_a_pdf" targetNamespace="urn:soapapihtml_a_pdf"
+    xmlns:typens="urn:soapapihtml_a_pdf" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <types>
+        <s:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:soapapihtml_a_pdf" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            <s:complexType name="ResultElementArray">
+                <s:complexContent>
+                    <s:restriction base="soapenc:Array">
+                    <s:attribute ref="soapenc:arrayType" wsdl:arrayType="s:string[]"/>
+                    </s:restriction>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="UserQuery">
+                <s:all>
+                    <s:element name="User" type="s:string"/>
+                    <s:element name="Password" type="s:string"/>
+                </s:all>
+            </s:complexType>
+        </s:schema>
+    </types>
+
+    <message name="grabar_archivos_firmadosRequest">
+        <part name="set_var_usuario"	 type="s:string"></part>
+        <part name="set_var_documento" type="s:string"></part>
+        <part name="set_var_archivo"	type="s:base64Binary"></part>
+        <part name="set_var_firma"	type="s:base64Binary"></part>
+        <part name="set_var_passwordFirma"	type="s:string"></part>
+    </message>
+
+    <message name="grabar_archivos_firmadosResponse">
+	  <part name="result" type="s:base64Binary"></part>
+    </message>
+
+    <portType name="soapapiorfeoPort">
+        <operation name="grabar_archivos_firmados">
+        <input message="typens:grabar_archivos_firmadosRequest"></input>
+        <output message="typens:grabar_archivos_firmadosResponse"></output>
+        </operation>
+    </portType>
+
+
+    <binding name="soapapiorfeoBinding" type="typens:soapapiorfeoPort">
+        <soap:binding style="rpc"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="grabar_archivos_firmados">
+            <soap:operation
+                soapAction="urn:soapapiorfeo/set_archivo" />
+            <input>
+            <soap:body use="encoded"
+                namespace="urn:soapapiorfeo"
+                encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+            <soap:body use="encoded"
+                namespace="urn:soapapiorfeo"
+                encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+    </binding>
+    <service name="soapapiorfeoService">
+        <port name="soapapiorfeoPort" binding="typens:soapapiorfeoBinding">
+            <soap:address location="http://pruebas.quipux.itred.edu.ec/firma/ws_firma_digital.php"/>
+        </port>
+    </service>
+</definitions>

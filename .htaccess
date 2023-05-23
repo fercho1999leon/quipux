@@ -1,8 +1,45 @@
 
 
+
 # php -- BEGIN cPanel-generated handler, do not edit
-# Configure el paquete “ea-php55” como el lenguaje de programación predeterminado “PHP”.
+# Configure el paquete “ea-php71” como el lenguaje de programación predeterminado “PHP”.
 <IfModule mime_module>
-  AddHandler application/x-httpd-ea-php55 .php .php5 .phtml
+  AddHandler application/x-httpd-ea-php71 .php .php7 .phtml
 </IfModule>
 # php -- END cPanel-generated handler, do not edit
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php7_module>
+   php_flag display_errors On
+   php_value max_execution_time 30
+   php_value max_input_time 30
+   php_value max_input_vars 5000
+   php_value memory_limit 2048M
+   php_value post_max_size 2048M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php71"
+   php_value upload_max_filesize 20M
+   php_flag zlib.output_compression Off
+   php_flag short_open_tag On
+   php_value date.timezone "America/Guayaquil"
+   php_value always_populate_raw_post_data -1
+</IfModule>
+<IfModule lsapi_module>
+   php_flag display_errors On
+   php_value max_execution_time 30
+   php_value max_input_time 30
+   php_value max_input_vars 5000
+   php_value memory_limit 2048M
+   php_value post_max_size 2048M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php71"
+   php_value upload_max_filesize 20M
+   php_flag zlib.output_compression Off
+   php_flag short_open_tag On
+   php_value date.timezone "America/Guayaquil"
+   php_value always_populate_raw_post_data -1
+</IfModule>
+# END cPanel-generated php ini directives, do not edit

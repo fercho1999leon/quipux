@@ -24,7 +24,8 @@ function ws_generar_pdf_base64($html, $plantilla, $servidor, $estado="", $numDoc
                 $archivo = base64_encode(file_get_contents($plantilla));
         }
         $oSoap = new SoapClient("$wsdl",array("trace" => 1, "exceptions" => 0, 'soap_version' => 'SOAP_1_1','wsdl_cache' => 0));
-
+       
+        //VERIFICACION DE CHK FIRMA ELECTRONICA
         $envioDatos=$oSoap->__soapcall('html_a_pdf',
             array(
               new SoapParam(base64_encode($html), "set_html"),
@@ -36,18 +37,18 @@ function ws_generar_pdf_base64($html, $plantilla, $servidor, $estado="", $numDoc
               new SoapParam($orientPag, "set_orient_pag")
            )
         );
+
     //Comentar
-    
-       /* var_dump($envioDatos);
+    /*
+        var_dump($envioDatos);
 
             // Display the request and response
         print "<pre>\n";
         print "Request :\n".htmlspecialchars($oSoap->__getLastRequest()) ."\n";
         print "Response:\n".htmlspecialchars($oSoap->__getLastResponse())."\n";
-        print "</pre>";*/
-        
+        print "</pre>";
+        */
     //Hasta aqui
-
         if (strtoupper(substr(trim($envioDatos),0,4)) == "SOAP" or strlen($envioDatos)<1000) {
             throw new SoapFault('Server', 'Error SOAP: ' . $envioDatos);
             return "0";

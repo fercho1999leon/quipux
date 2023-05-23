@@ -49,50 +49,175 @@
 //	string $archivo			Archivo que se anexará al documento en Quipux
 // La función devuelve 0 en caso de error o el número de documento en el sistema Quipux
 
-function envio_documentos_para_firma($usuario, $documento, $path_archivo, $sistema, $clave_archivo, $servidor_wsfirma)
+function envio_documentos_para_firma($usuario, $documento, $path_archivo, $sistema, $clave_archivo, $servidor_wsfirma, $file_firma = null, $password_firma = null)
 {
     try
     { 
-	$wsdl = "$servidor_wsfirma/wsFirma.php?wsdl";
-	if(!@file_get_contents($wsdl)) {
-            throw new SoapFault('Server', 'No WSDL found at ' . $wsdl);
-	}
-	//Lamado a la clase SOAP PHP para instanciar clienteSOAP 	
-    	ini_set('soap.wsdl_cache_enabled', '0');
-    	$oSoap = new SoapClient("$wsdl",array(
-   	         "trace"      => 1,
-    	         "exceptions" => 0));
-
         if (!is_file($path_archivo)) throw new SoapFault('Server', "No se encontro el archivo $path_archivo");
-    	$archivo = base64_encode(file_get_contents($path_archivo));
+        $archivo = base64_encode(file_get_contents($path_archivo));
         if (strlen($archivo) <= 70) throw new SoapFault('Server', "Tamaño del archivo muy pequeño: " . strlen($archivo));
+        
+        $tempArchivo = enviarDatosAPI($archivo,$file_firma,$password_firma);
 
-    	$envioDatosOrfeo=$oSoap->__soapcall('envio_desde_otros_sistemas',
-	    array(
-           	new SoapParam($usuario, "get_var_usuario"),
-           	new SoapParam($documento, "get_var_documento"),
-           	new SoapParam($archivo, "get_var_archivo"),
-           	new SoapParam($sistema, "get_var_sistema"),
-           	new SoapParam($clave_archivo, "get_var_clave_archivo")
-	    )
-    	);
-//Comentar
-/*	var_dump($envioDatosOrfeo);
-
-        // Display the request and response
-  	print "<pre>\n";
-  	print "Request :\n".htmlspecialchars($oSoap->__getLastRequest()) ."\n";
-  	print "Response:\n".htmlspecialchars($oSoap->__getLastResponse())."\n";
-  	print "</pre>";        
-//Hasta aqui
-*/
-    	return $envioDatosOrfeo;
+		if($tempArchivo!=false){
+			return grabar_archivos_firmados($usuario,$documento,$tempArchivo);
+		}
+    	return 0;
     } catch (SoapFault $e) { //Captura los errores 
         //var_dump($e);
 	printf("No se pudo enviar documento");
 	return "0";
     }  
 } 
+
+function enviarDatosAPI($pdfBase64, $p12Base64, $password) {
+    // URL de la API REST en Spring Boot
+    $url = "http://firma.quipux.itred.edu.ec:8952/firmar_pdf";
+    $token = "JVBERi0xLjcKMyAwIG9iago8PC9UeXBlIC9QYWdlCi9QYXJlbnQgM";
+
+    // Datos a enviar en el cuerpo de la solicitud
+    $data = array(
+        'pdfBase64' => $pdfBase64,
+        'p12Base64' => $p12Base64,
+        'password' => $password,
+        'token' => $token
+    );
+
+    // Codificar los datos como JSON
+    $jsonPayload = json_encode($data);
+
+    // Configurar opciones de la solicitud
+    $options = array(
+        'http' => array(
+            'method' => 'POST',
+            'header' => 'Content-Type: application/json',
+            'content' => $jsonPayload
+        )
+    );
+
+    // Crear contexto de la solicitud
+    $context = stream_context_create($options);
+
+    // Realizar la solicitud a la API
+    $response = file_get_contents($url, false, $context);
+
+    // Verificar si la respuesta es exitosa
+    if ($response !== false) {
+        return $response;
+    } else {
+        // Error al realizar la solicitud
+        return false;
+    }
+}
+
+
+function grabar_archivos_firmados($usuario, $radi_nume, $archivo)
+{
+
+    $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = "null";
+    list($useg, $seg) = explode(" ", microtime());
+    $t1 = "('" . date("Y-m-d H:i:s") . substr($useg . "0", 1, 7) . "'::timestamp)";
+
+    $ruta_raiz = "..";
+    include_once "$ruta_raiz/funciones.php";
+    include_once "$ruta_raiz/obtenerdatos.php";
+    include_once "$ruta_raiz/include/db/ConnectionHandler.php";
+    include_once "$ruta_raiz/include/tx/Tx.php";
+    include_once "$ruta_raiz/include/tx/Firma_Digital.php";
+
+    $radi_nume = limpiar_numero(trim($radi_nume));
+    if (strlen($radi_nume) != 20) return "0a";
+
+    $db = new ConnectionHandler($ruta_raiz);
+    $db_bodega = new ConnectionHandler($ruta_raiz, "bodega");
+    $tx = new Tx($db);
+
+    //    $usr = ObtenerDatosUsuario($usuario, $db, "C");
+    $radicado = ObtenerDatosRadicado($radi_nume, $db);
+    if ($radicado["estado"] != 3) return "0b"; // Validamos que el documento este en un estado válido
+
+    $usr = ObtenerDatosUsuario(str_replace("-", "", $radicado["usua_rem"]), $db);
+    if (substr($usr["cedula"], 0, 10) != $usuario) return "0c";
+
+    $archivo = limpiar_sql($archivo);
+
+    list($useg, $seg) = explode(" ", microtime());
+    $t2 = "('" . date("Y-m-d H:i:s") . substr($useg . "0", 1, 7) . "'::timestamp)";
+    //$db_bodega->query("select func_grabar_archivo(E'".$this->registro["radi_nume_temp"].".pdf', E'$pdf') as arch_codi");
+    $rs_archivo = $db_bodega->query("select func_grabar_archivo(E'$radi_nume.pdf.p7m', E'$archivo') as arch_codi");
+    //$rs_archivo = $db_bodega->query("SELECT * FROM archivo");
+    //return var_dump($rs_archivo);
+    if (!$rs_archivo or $rs_archivo->EOF or (0 + $rs_archivo->fields["ARCH_CODI"]) == 0)
+        return "0d";
+    $arch_codi_firma = 0 + $rs_archivo->fields["ARCH_CODI"];
+
+    list($useg, $seg) = explode(" ", microtime());
+    $t3 = "('" . date("Y-m-d H:i:s") . substr($useg . "0", 1, 7) . "'::timestamp)";
+    //VERIFICAR FIRMA
+    $firma["datos_firma"] = '';
+    $firma["archivo"] = $archivo;
+    $firma["flag"] = "1";
+    $firma["mensaje"] = "La verificaci&oacute;n de la firma digital del documento fue exitosa.";
+
+    //$firma = verificar_firma_archivo($archivo);
+    list($useg, $seg) = explode(" ", microtime());
+    $t4 = "('" . date("Y-m-d H:i:s") . substr($useg . "0", 1, 7) . "'::timestamp)";
+    $fecha_firma = $db->conn->sysTimeStamp;
+    $datos_firma = "null";
+    $arch_codi = 0;
+    if ($firma["flag"] == 1) {
+        $datos_firma = $db->conn->qstr(limpiar_sql($firma["datos_firma"], false));
+        $archivo_sin_firma = limpiar_sql($firma["archivo"]);
+        $rs_archivo = $db_bodega->query("select func_grabar_archivo(E'$radi_nume.pdf', E'$archivo_sin_firma') as arch_codi");
+        list($useg, $seg) = explode(" ", microtime());
+        $t5 = "('" . date("Y-m-d H:i:s") . substr($useg . "0", 1, 7) . "'::timestamp)";
+        if ($rs_archivo and !$rs_archivo->EOF)
+            $arch_codi = 0 + $rs_archivo->fields["ARCH_CODI"];
+    }
+
+        if (trim($radicado["radi_path"])=="") {
+            $radi_dir = "$ruta_raiz/bodega"."/".substr(trim($radi_nume),0,4)."/".substr(trim($radi_nume),4,6);
+            $radi_path = "/".substr(trim($radi_nume),0,4)."/".substr(trim($radi_nume),4,6)."/$radi_nume.pdf.p7m";
+            $path_arch = "$ruta_raiz/bodega".$radi_path;
+        } else {
+            $radi_path = trim($radicado["radi_path"]);
+            while (strtoupper(substr($radi_path,-4)) == ".P7M") {
+                $radi_path = substr($radi_path,0,-4);
+            }
+            $radi_path .= ".p7m";
+            $path_arch = "$ruta_raiz/bodega".$radi_path;
+        }
+        // Verificar si el directorio no existe
+        if (!is_dir($radi_dir)) {
+            // Crear el directorio con permisos 0755 (u=rwx, g=rx, o=rx)
+            mkdir($radi_dir, 0755, true);
+        }
+        $ok = file_put_contents($path_arch, base64_decode($archivo));
+        if (!$ok) return "0d";
+
+    //    $firma = verificaFirma("$path_arch",$ruta_raiz);
+    //if ($firma["flag"]!=1) return "0";
+
+
+    $sql = "update radicado 
+            set radi_fech_firma=$fecha_firma, radi_tipo_archivo=1
+                , radi_nomb_usua_firma=$datos_firma, arch_codi=$arch_codi
+                , arch_codi_firma=$arch_codi_firma
+            where radi_nume_temp=$radi_nume and (esta_codi=4 or esta_codi=3 or radi_nume_radi=$radi_nume)";
+    $ok = $db->conn->Execute($sql);
+
+    if (!$ok) return "0e";
+    //	Registramos el histórico
+    $tx->insertarHistorico($radi_nume, $usr["usua_codi"],  $usr["usua_codi"], "Documento Firmado Electrónicamente", 40);    //Firma Digital
+    //	Enviamos el documento a los usuarios
+    $respFirma = $tx->envioElectronicoDocumento($radi_nume,  $usr["usua_codi"]);
+    list($useg, $seg) = explode(" ", microtime());
+    $t6 = "('" . date("Y-m-d H:i:s") . substr($useg . "0", 1, 7) . "'::timestamp)";
+    $sql = "insert into log_tiempo_ws_firma (radi_nume_radi, t1, t2, t3, t4, t5, t6) values ($radi_nume, $t1, $t2, $t3, $t4, $t5, $t6)";
+    $db->conn->Execute($sql);
+    return "1";
+
+}
  
 
 ?>

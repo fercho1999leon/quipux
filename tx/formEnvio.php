@@ -195,6 +195,62 @@ require_once "$ruta_raiz/js/ajax.js";
         document.realizarTx.chk_reasigna_padre.checked=0;
     }
 
+    /*******CODIGO PARA RENDERIZAR OPCIONES DE FIRMA********************************** */
+    document.addEventListener('DOMContentLoaded', function() {
+        /*************************** */
+        let checkbox = document.getElementById('chk_firma'); // Aqui seleccionas tu checkbox.
+        //checkbox.checked = false; // Aqui le quitas el checked.
+        
+        /**************************** */
+        if(checkbox){
+            checkbox.addEventListener('change', function() {
+                let divFirma = document.getElementById('render_firma');
+                if (checkbox.checked) {
+                divFirma.innerHTML = `
+                    <table>
+                        <tr>
+                            <td class="titulos4" colspan="4" width='100%' align='center'>FIRMA ELECTRONICA</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <td>
+                            <label for="fileFirma">Documento firma (P12): </label>
+                            <input type="file" name="fileFirma" id="fileFirma" accept=".p12" class="file" require>
+                        </td>
+                        <td>
+                            <label for="passwordFirma">Contraseña firma: </label>
+                            <input type="password" name="passwordFirma" id="passwordFirma" require>
+                        </td>
+                    </table>
+                `;
+                } else {
+                    divFirma.innerHTML = '';
+                }
+            });
+        }
+
+        let divFirma = document.getElementById('render_firma');
+        if(divFirma){
+            divFirma.innerHTML = `
+                <table>
+                    <tr>
+                        <td class="titulos4" colspan="4" width='100%' align='center'>FIRMA ELECTRONICA</td>
+                    </tr>
+                </table>
+                <table>
+                    <td>
+                        <label for="fileFirma">Documento firma (P12): </label>
+                        <input type="file" name="fileFirma" id="fileFirma" accept=".p12" class="file" require>
+                    </td>
+                    <td>
+                        <label for="passwordFirma">Contraseña firma: </label>
+                        <input type="password" name="passwordFirma" id="passwordFirma" require>
+                    </td>
+                </table>
+            `;
+        }
+    });
+    
 var estado='';
 var estadoF='';
 var esExterno=true;
@@ -702,7 +758,7 @@ switch ($codTx)
   ?>
 
 <style>a:link, a:visited, a:hover {color: blue;}</style>
-    <form action="javascript:;" name="realizarTx" method='post' >
+    <form action="javascript:;" name="realizarTx" method='post' enctype="multipart/form-data" >
         <input type='hidden' name="carpeta" value="<?=$carpeta?>">
         <input type='hidden' name="codTx" value="<?=$codTx?>">  
         <!-- <input type='hidden' name="optEstado" value="<?$_POST['optEstado']?>">-->
@@ -728,7 +784,7 @@ switch ($codTx)
                                     <td class="titulos2" width="25%">
                                     Buscar Carpeta Virtual (Nombre):</td>
                                     <td class="listado2" colspan="3">
-                                    <input type="text" size="30" value="" id="inputString" name="inputString" onkeypress="lookupTrd(this,event);" onblur="limpiar()" autocomplete="off"/>                                    
+                                    <input type="text" size="30" value="" id="inputString" name="inputString" onkeypress="lookupTrd(this,event);" onblur="limpiar()" autocomplete="off" />                                    
                                     <font size="1">Ingrese los primeros caracteres del nombre de la Carpeta y seleccione de la lista.</font>
                                     <div class="suggestionsBox" id="suggestions" style="display:none; width:300px; height:100px; overflow-x:hidden; autoflow-y:scroll;">
                                     <div class="suggestionList" id="autoSuggestionsList">
@@ -765,20 +821,20 @@ switch ($codTx)
             </tr>
 <?	}
 	if($_SESSION["firma_digital"]==1 and $codTx == 11) { //Solicita campos necesarios para firma digital
-            if ($_SESSION["tipo_usuario"]==2) {
-                echo '<input type="hidden" name="chk_firma" id="chk_firma" value="1">';
-            } else {
+        if ($_SESSION["tipo_usuario"]==2) {
+            echo '<input type="hidden" name="chk_firma" id="chk_firma" value="1" />';
+        } else {
 ?>
             <tr align="center">
                 <td colspan="2" class="celdaGris" align=center>
                     <br />
-                    <input type="checkbox" name="chk_firma" id="chk_firma"  class="ebutton" value="0"> <!--VALUE 1 PARA FIRMA ELECTRONICA-->
-                        <span><b>&#191;Documento?</b></span><br/>
+                    <input type="checkbox" name="chk_firma" id="chk_firma"  class="ebutton" value="1" /> <!--VALUE 1 PARA FIRMA ELECTRONICA-->
+                        <span><b>&#191;Firmar electronicamente?</b></span><br/>
                 </td>
             </tr>
-<?          }
-        }
-
+<?       }
+        
+    }
 if ($codTx==9){
     $contAcc=0;
     //Verifico permiso de acceso
@@ -820,6 +876,9 @@ if ($codTx==9){
                 <b>Comentario: &nbsp;</b>
             <textarea id="observa" name=observa cols=70 rows=3 class=ecajasfecha onkeypress="return limita(event);"></textarea>            
             <span id="spn_numero_caracteres_disponibles"></span>
+
+
+
             <table >
                 <? if(sizeof($radiNumeAsociados) > 0){?>                
                 <tr>
@@ -907,14 +966,14 @@ if ($codTx==9){
                  
             <tr>
                     <td  colspan="2" align='center'>
-<? if ($whereFiltro !=="0") { ?>
-                        <input type='button' value='Aceptar' onClick="okTx('<?=$ver?>','<?=$docExterno?>');" name='enviardoc' class='botones' id='REALIZAR'>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<? } ?>
-                        <input type='button' value='Regresar' onClick='history.back();' name='enviardoc' class='botones' id='Cancelar'>
-                    </td>
-            </tr>
-   <?}
+            <? if ($whereFiltro !=="0") { ?>
+                                    <input type='button' value='Aceptar' onClick="okTx('<?=$ver?>','<?=$docExterno?>');" name='enviardoc' class='botones' id='REALIZAR'>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <? } ?>
+                                    <input type='button' value='Regresar' onClick='history.back();' name='enviardoc' class='botones' id='Cancelar'>
+                                </td>
+                        </tr>
+            <?}
 
 }
 elseif ($codTx!=9){
@@ -985,6 +1044,16 @@ elseif ($codTx!=9){
         </table>
             </tr>
             <? } ?>
+            <?   
+                if($_SESSION["firma_digital"]==1 && ($codTx == 4 || $codTx == 11)){
+                    ?>
+                    
+                    <table id="render_firma">
+                        
+                    </table>
+                    <?
+                }
+            ?>
             <tr>
                 <td  colspan="2" align='center'>
 <? if ($whereFiltro !=="0") { ?>

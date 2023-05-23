@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+ <?xml version="1.0" encoding="utf-8"?>
 <definitions name="soapapiorfeo" targetNamespace="urn:soapapiorfeo"
   xmlns:typens="urn:soapapiorfeo" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema"
@@ -14,7 +14,6 @@
           <s:restriction base="soapenc:Array">
             <s:attribute ref="soapenc:arrayType" wsdl:arrayType="s:string[]"/>
           </s:restriction>
-
         </s:complexContent>
       </s:complexType>
      <s:complexType name="UserQuery">
@@ -32,6 +31,8 @@
 	  <part name="set_var_usuario"	 type="s:string"></part>
 	  <part name="set_var_documento" type="s:string"></part>
 	  <part name="set_var_archivo"	type="s:base64Binary"></part>
+    <part name="set_var_firma"	type="s:base64Binary"></part>
+    <part name="set_var_passwordFirma"	type="s:string"></part>
   </message>
   <message name="grabar_archivos_firmadosResponse">
 	  <part name="result" type="s:string"></part>
@@ -39,8 +40,8 @@
 
    <portType name="soapapiorfeoPort">
      <operation name="grabar_archivos_firmados">
-	  <input message="typens:grabar_archivos_firmadosRequest"></input>
-	  <output message="typens:grabar_archivos_firmadosResponse"></output>
+      <input message="typens:grabar_archivos_firmadosRequest"></input>
+      <output message="typens:grabar_archivos_firmadosResponse"></output>
      </operation>
   </portType>
 

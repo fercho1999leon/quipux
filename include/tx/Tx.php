@@ -604,7 +604,7 @@ function GuardarUsuariosRadicado($radicado, $usuario, $usua_tipo, $rad) {
 }
 
 
-function enviarDocumentosFirmaElectronica($radicados)
+function enviarDocumentosFirmaElectronica($radicados, $file_firma = null, $password_firma = null)
 {
     include $this->ruta_raiz."/config.php";			//Consulta de datos de los usuarios y radicados
     include_once $this->ruta_raiz."/obtenerdatos.php";			//Consulta de datos de los usuarios y radicados
@@ -630,14 +630,18 @@ function enviarDocumentosFirmaElectronica($radicados)
             if ($path_pdf != "") {
                  //envio_documentos_para_firma($usr["cedula"], $radi_nume, $path_arch.$nomb_arch,$nombre_servidor,$clave_archivo,$servidor_wsfirma);
                 $path_pdf = $this->ruta_raiz."/bodega".$path_pdf;
-		$flag_envio_documento = envio_documentos_para_firma(substr($usr["cedula"],0,10), $radi_nume, $path_pdf, $nombre_servidor, $clave_archivo, $servidor_firma);
-                if ($flag_envio_documento!="0") $flag_firmar = true;
+		        $flag_envio_documento = envio_documentos_para_firma(substr($usr["cedula"],0,10), $radi_nume, $path_pdf, $nombre_servidor, $clave_archivo, $servidor_firma, $file_firma, $password_firma);
+                if ($flag_envio_documento!="0") {
+                    $flag_firmar = true;
+                    //var_dump($flag_envio_documento);
+                } //DESCOMENTAR PARA FIRMA
             }
         }
     }
     if ($flag_firmar) {
-//      LLAMAR AL APPLET
-    	$this->mostrar_applet_firma_digital();
+        return $flag_firmar;
+        //LLAMAR AL APPLET
+    	//$this->mostrar_applet_firma_digital();
     } else {
         echo "<br/><span><font color='Navy'><b>Existieron errores al firmar los documentos. Por favor vuelva a intentarlo.</b></font></span><br/>";
     }
@@ -798,10 +802,12 @@ function envioManualDocumento($radicados, $observa)
 }
 
 
-function reintentarEnvioElectronicoDocumento($radicados, $usua_codi, $observa)
+function reintentarEnvioElectronicoDocumento($radicados, $usua_codi, $observa, $file_firma = null, $password_firma = null)
 {
 	$respEnvio = "";
-	$respEnvio = $this->enviarDocumentosFirmaElectronica($radicados);
+    //echo $file_firma;
+	$respEnvio = $this->enviarDocumentosFirmaElectronica($radicados,$file_firma,$password_firma);
+    
 	foreach($radicados as $noRadicado)
 	{
 	    $this->insertarHistorico($noRadicado, $usua_codi, $usua_codi, $observa, 18);

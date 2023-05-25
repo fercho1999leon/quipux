@@ -1,2 +1,6 @@
 bodega
 config.php
+*.zip
+error_log
+.htaccess
+*.ini

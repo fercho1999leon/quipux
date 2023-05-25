@@ -170,8 +170,8 @@ else
 	    	echo "<b>Por favor cargue una plantilla para los documentos del &aacute;rea.</b><br>";
 	}
 ?>
-	    <input type="file" name="arch_plantilla" id="arch_plantilla" class="tex_area" onChange="valida_extension();" size="70">
-	    <br><b>La plantilla debe estar en formato &quot;pdf&quot; y su tama&ntilde;o no debe superar los 100 Kb.</b>
+	    <input type="file" name="arch_plantilla" id="arch_plantilla" class="tex_area" onChange="valida_extension();" size="5048">
+	    <br><b>La plantilla debe estar en formato &quot;pdf&quot; y su tama&ntilde;o no debe superar los 5 Mb.</b>
 	</td>
     </tr>
   </table>

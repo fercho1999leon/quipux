@@ -71,7 +71,7 @@ if ($txt_ok==1) {
     $ok3 = true;
     $arch_plantilla = trim($_FILES["arch_plantilla"]['tmp_name']);
     if ($arch_plantilla != "") {
-        if (filesize($arch_plantilla)>(100*1024)) {
+        if (filesize($arch_plantilla)>(5048*1024)) {
             unlink($arch_plantilla);
             $error = "No se pudo cargar la plantilla; recuerde que el tama&ntilde;o m&aacute;ximo permitido es 100 Kb.";
             $ok3 = false;

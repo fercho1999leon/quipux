@@ -100,6 +100,19 @@ function html_head ($flag_estilos=true, $flag_index=false) {
             </script>
             <script type='text/JavaScript' src='$ruta_raiz/js/shortcut.js'></script>            
         </head>";
+
+        $texto.='
+            <link
+                rel="canonical"
+                href="https://getbootstrap.com/docs/5.3/examples/sign-in/"
+            />
+            <link
+                href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+                rel="stylesheet"
+                integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+                crossorigin="anonymous"
+            />
+        ';
     return $texto;
 }
 
@@ -134,7 +147,7 @@ function html_encabezado () {
 // Imprime el pie de página en páginas como login.php y otras
 function html_pie_pagina () {
     global $ruta_raiz;
-    $texto = "<div id='footer'><div class='shad-r'><div class='shad-l'><div class='tabber' id='tab'><div class='tabbertab' title='Flushed Away'>
+    /*$texto = "<div id='footer'><div class='shad-r'><div class='shad-l'><div class='tabber' id='tab'><div class='tabbertab' title='Flushed Away'>
                 <table width='100%'>
                     <tr>
                         <td align='center'>
@@ -146,7 +159,14 @@ function html_pie_pagina () {
                         </td>
                     </tr>
                 </table>
-            </div></div></div></div></div>";
+            </div></div></div></div></div>";*/
+    $texto = '
+        <script 
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"
+        ></script>
+    '; 
     return $texto;
 }
 

@@ -1,0 +1,10 @@
+:root {
+    --bs-primary: #21376d;
+    --bs-secondary: #6c757d;
+    --bs-primary-rgb: 33, 55, 109;
+    --bs-secondary-rgb: 108, 117, 125;
+}
+.btn-primary {
+    background-color: #21376d;
+    border-color: #21376d;
+}

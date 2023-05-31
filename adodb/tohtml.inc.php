@@ -52,7 +52,8 @@ function rs2html(&$db,&$rsTmp,$ztabhtml=false,$zheaderarray=false,$htmlspecialch
             $orderTipo = "desc";
     }
 $s =''; $rows=0;$docnt = false;
-GLOBAL $gSQLMaxRows,$gSQLBlockRows,$_GET;
+GLOBAL $gSQLMaxRows,$gSQLBlockRows,$_GET,$flag_body;
+$flag_body=true;
 
 	if (!$rsTmp) {
 		printf(ADODB_BAD_RS,'rs2html');
@@ -63,7 +64,8 @@ GLOBAL $gSQLMaxRows,$gSQLBlockRows,$_GET;
 	$typearr = array();
 	$ncols = $rsTmp->FieldCount();
 	$nrows = $rsTmp->_maxRecordCount;
-	$hdr = "<TABLE COLS=$ncols $ztabhtml>\n";
+	$hdr = "<TABLE COLS=$ncols $ztabhtml class='table table-hover'>\n";
+	$hdr .= "<thead >";
         if ($db->conn->pageExecuteCountRows)
             $hdr .= "<tr><td colspan='$ncols' class='listado1'>&nbsp;No. de registros encontrados: <b>$nrows</b></td></tr><tr>\n";
 	$img_no = $ordenActual;
@@ -132,7 +134,7 @@ GLOBAL $gSQLMaxRows,$gSQLBlockRows,$_GET;
                         
 			if($prefijo!="HID_" AND $prefijo!="CHU_" AND $prefijo!="CHR_" AND $prefijo!="CHK_" AND $prefijo!="HOR_")
 			{                            
-                            $hdr .= "<th >";
+                            $hdr .= "<th scope='col' >";
                             if($img_no==$i) { //Flecha del ordenamiento ascendente o descendente
                                  if ($orderTipo=="asc") {
                                      $alt_img="&#9650;";
@@ -146,9 +148,9 @@ GLOBAL $gSQLMaxRows,$gSQLBlockRows,$_GET;
                             if ($paginador_ajax != "") { //Si usa el paginador ajax
                                 $next_page = "";
                                 if (isset ($_GET["adodb_next_page"])) $next_page = "&adodb_next_page=".$_GET["adodb_next_page"];
-                                $hdr .= "<a href='javascript:paginador_reload_$paginador_ajax(\"orderNo=$i&orderTipo=$orderTipo&orden_cambio=1$next_page\")'>";
+                                $hdr .= "<a href='javascript:paginador_reload_$paginador_ajax(\"orderNo=$i&orderTipo=$orderTipo&orden_cambio=1$next_page\")' style='text-decoration:none'>";
                             }else{ //Si usa el paginador normal
-                                $hdr .= "<a href='".$_SERVER['PHP_SELF']."?$encabezado&orden_cambio=1'>";
+                                $hdr .= "<a href='".$_SERVER['PHP_SELF']."?$encabezado&orden_cambio=1' style='text-decoration:none'>";
                             }
                             $hdr .= "$fname </a></th>";
 			}
@@ -175,7 +177,7 @@ GLOBAL $gSQLMaxRows,$gSQLBlockRows,$_GET;
 					$fname = " ";
 					}
 	/*			$hdr .= "<TH class=titulos2 width=1%>$fname</TH>"; */
-				$hdr .= "<TH  width=1%>$fTitulo $fname</TH>";
+				$hdr .= "<TH  width=1% >$fname</TH>";
 				}
 			}
 		}
@@ -214,14 +216,17 @@ GLOBAL $gSQLMaxRows,$gSQLBlockRows,$_GET;
 					$fname = " ";
 					}
 	/*			$hdr .= "<TH class=titulos2 width=1%>$fname</TH>"; */
-				$hdr .= "<TH  width=1%>$fTitulo $fname</TH>";
+				$hdr .= "<TH  width=1%>$fname</TH>";
 				}
 			}
 		}
-
 	}//se forman las columnas dinamicamente
         
 	$hdr .= "\n</tr>";
+	if($flag_body){
+		$hdr .= "</thead><tbody >\n";
+		$flag_body=false;
+	}
 	if ($echo) print $hdr."\n\n";
 	else $html = $hdr;
 	// smart algorithm - handles ADODB_FETCH_MODE's correctly by probing...
@@ -578,7 +583,7 @@ function arr2html(&$arr,$ztabhtml='',$zheaderarray='')
 		$s .= '<TR >';
 		for ($i=0; $i<sizeof($zheaderarray); $i++)
 		{
-			$s .= "	<TH>{$zheaderarray[$i]}</TH>\n";
+			$s .= "	<TH >{$zheaderarray[$i]}</TH>\n";
 		}
 		$s .= "\n</TR>";
 	}

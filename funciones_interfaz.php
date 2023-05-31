@@ -25,6 +25,7 @@
 function html_head ($flag_estilos=true, $flag_index=false) {
     global $ruta_raiz;
     $texto = "<head>
+            <meta name='viewport' content='width=device-width, initial-scale=1'>
             <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
             <title>.:: Quipux - Sistema de Gesti&oacute;n Documental ::.</title>
             <link href='$ruta_raiz/estilos/orfeo.css' rel='stylesheet' type='text/css'>
@@ -102,16 +103,12 @@ function html_head ($flag_estilos=true, $flag_index=false) {
         </head>";
 
         $texto.='
-            <link
-                rel="canonical"
-                href="https://getbootstrap.com/docs/5.3/examples/sign-in/"
-            />
-            <link
-                href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-                rel="stylesheet"
-                integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-                crossorigin="anonymous"
-            />
+            <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+            <!-- include summernote css/js -->
+            <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
         ';
     return $texto;
 }
@@ -160,13 +157,13 @@ function html_pie_pagina () {
                     </tr>
                 </table>
             </div></div></div></div></div>";*/
-    $texto = '
-        <script 
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-            crossorigin="anonymous"
-        ></script>
-    '; 
+    $texto = "
+        <link href='$ruta_raiz/estilos/root-colors.css' rel='stylesheet' type='text/css'>
+        <script defer src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js'></script>
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js' integrity='sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz' crossorigin='anonymous'></script>
+        <!-- include summernote css/js -->
+        <script src='https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js'></script>
+    "; 
     return $texto;
 }
 

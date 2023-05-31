@@ -36,18 +36,18 @@ if ($_SESSION["tipo_usuario"]==2) $carpeta = 80;
 $num = 1;
 
 function crear_grupo_bandeja($id, $nombre, $items) {
-    $grupo = '<tr onclick="mostrar_ocultar_grupo_carpetas(\'tr_menu_'.$id.'\')">
-                <td class="menu_titulo">
-                    <img id="tr_menu_'.$id.'_img_com" src="./iconos/bandeja_comprimida.png" alt="+" style="display: none">
-                    <img id="tr_menu_'.$id.'_img_exp" src="./iconos/bandeja_expandida.png" alt="-">
-                    '.$nombre.'
-                </td>
-            </tr>
-            <tr id="tr_menu_'.$id.'">
-                <td width="100%">
-                    <table width="100%" border="0" cellpadding="0" cellspacing="3">'.$items.'</table>
-                </td>
-            </tr>';
+    $grupo = '
+            <button class="btn btn-primary mx-3" type="button" data-bs-toggle="collapse" data-bs-target="#'.$id.'" aria-expanded="false" aria-controls="'.$id.'">
+                '.$nombre.'
+            </button>
+            <div class="collapse my-2 mx-1" id="'.$id.'">
+                <div class="card card-body">
+                    <div class="btn-group-vertical ps-1 pe-3" role="group" aria-label="Vertical button group">
+                        '.$items.'
+                    </div>
+                </div>
+            </div>
+            ';
     return $grupo;
 }
 
@@ -59,11 +59,10 @@ function crear_item_bandeja ($carpeta, $nombre, $descripcion, $destino="") {
     ++$num;
     if ($carpeta != 0) { //Si llama desde una bandeja
         $destino = "cuerpo.php?carpeta=$carpeta&nomcarpeta=$nombre";
-        $nombre .= " <spam id='spam_carpeta_$carpeta'></spam>";
+        $nombre .= " <spam ></spam>";
         $script = "<script type='text/javascript'>cambiar_contador('$carpeta','".cargar_contadores_bandejas($carpeta)."');</script>";
     }
-
-    $tr = "<tr class='menu_fondo1' name='menu_tr$num' id='menu_tr$num' onMouseOver='cambiar_fondo(this,1)' onMouseOut='cambiar_fondo(this,0)'>
+    /*$tr = "<tr class='menu_fondo1' name='menu_tr$num' id='menu_tr$num' onMouseOver='cambiar_fondo(this,1)' onMouseOut='cambiar_fondo(this,0)'>
             <td>&nbsp;&nbsp;
                 <a onclick=\"llamaCuerpo('$destino'); cambioMenu($num);\" class=\"menu_princ\"
                     target='mainFrame' title='$descripcion' href='javascript:void(0);'>$nombre
@@ -71,12 +70,22 @@ function crear_item_bandeja ($carpeta, $nombre, $descripcion, $destino="") {
                 $script
             </td>
         </tr>
-       ";
+       ";*/
+    if ($nombre == "NUEVO"){
+        $tr = "
+            <center>
+                <button type='button' class='btn btn-primary m-3 ' onclick=\"llamaCuerpo('$destino'); cambioMenu($num);\" target='mainFrame' title='$descripcion' href='javascript:void(0);'><i class=\"fa-regular fa-paper-plane\"></i> $nombre $script</button>
+            </center>
+        ";
+        return $tr;
+    }
+    $tr = "
+        <button type='button' class='btn btn-outline-light text-black position-relative text-start' onclick=\"llamaCuerpo('$destino'); cambioMenu($num);\" target='mainFrame' title='$descripcion' href='javascript:void(0);'>$nombre<span class='position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger'><span id='spam_carpeta_$carpeta'>$script</span><span class='visually-hidden'>unread messages</span></span></button>
+    ";
     return $tr;
 }
 
 ?>
-
 <script type="text/javascript" src="<?=$ruta_raiz?>/js/shortcut.js"></script>
 <script type="text/javascript">
     var carpeta = 2;
@@ -167,11 +176,10 @@ function crear_item_bandeja ($carpeta, $nombre, $descripcion, $destino="") {
 
 </script>
 
-<body onload="recargar_estadisticas(); init_menu();">
-<center>
+<body onload="recargar_estadisticas(); init_menu();" class="bg-primary">
+
     <div id="div_bloquear_menu" style="width: 100%; height: 0%; z-index: 1000; position: fixed; top: 0; left: 0;"></div>
     <br>
-    <table width="160px" border="0" cellpadding="0" cellspacing="3">
 
 <?php
     if ($_SESSION["tipo_usuario"]==2) {
@@ -190,7 +198,7 @@ function crear_item_bandeja ($carpeta, $nombre, $descripcion, $destino="") {
         include "$ruta_raiz/menu/menuPrimero.php";
     }
 ?>
-    </table>
+    
     <br>
     <div id="div_estadisticas_menu" style="width: 160px;"></div>
    
@@ -199,6 +207,7 @@ if (!$version_light)
     include_once "$ruta_raiz/menu/alertas_documentos_vencidos.php";
 ?>
 
-</center>
+
+<?php echo html_pie_pagina(); ?>
 </body>
 </html>

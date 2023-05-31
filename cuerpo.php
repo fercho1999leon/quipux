@@ -131,7 +131,6 @@ $txt_fecha_hasta = date("Y-m-d");
     }
 
 </script>
-
 <script type='text/JavaScript' src='<?=$ruta_raiz?>/js/shortcut.js'></script>
 
 </head>
@@ -318,6 +317,7 @@ if($carpeta == 15 or $carpeta == 16) { //Tareas
         <div id="div_cuerpo"></div>
     </center>
 </form>
+<?php echo html_pie_pagina(); ?>
 <iframe  name="ifr_descargar_archivo" id="ifr_descargar_archivo" style="display: none;" src="">
     Su navegador no soporta iframes, por favor actualicelo.</iframe>
 </body>

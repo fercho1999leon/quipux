@@ -172,7 +172,7 @@ $mensaje .= "<br><br>Para ir a la pantalla de ingreso, haga click&nbsp<a href=\"
       }
 
       body {
-        background-image: url(<?echo "$ruta_raiz/img/logos/edificio-istred.jpg"; ?>);
+        background-image: url(<?echo "$ruta_raiz/img/logos/anniversary-istred.png"; ?>);
         background-repeat: no-repeat;
         background-size:cover;
       }

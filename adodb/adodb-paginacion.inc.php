@@ -34,10 +34,10 @@ class ADODB_Pager {
 	var $gridAttributes = 'width="100%"  border="0"  cellpadding="0" cellspacing="1" ';
 
 	// Localize text strings here
-	var $first = '<code>|&lt;</code>';
-	var $prev = '<code>&lt;&lt;</code>';
-	var $next = '<code>>></code>';
-	var $last = '<code>>|</code>';
+	var $first = '<code class="text-light">|&lt;</code>';
+	var $prev = '<code class="text-light">&lt;&lt;</code>';
+	var $next = '<code class="text-light">>></code>';
+	var $last = '<code class="text-light">>|</code>';
 	var $moreLinks = '...';
 	var $startLinks = '...';
 	var $gridHeader = false;
@@ -120,9 +120,15 @@ class ADODB_Pager {
 				$dato = $this->link_ajax;
 			else
 				$dato = $this->toRefLinks.'&'.$this->id."_next_page=1";
-			print "<a href=\"$dato\">$this->first</a> &nbsp;";
+			print "<li class='page-item'><a class='page-link text-decoration-none border-0 bg-primary' href=\"$dato\">$this->first</a> </li>";
 		} else {
-			print "$this->first &nbsp; ";
+			print "
+			<li class='page-item disabled'>
+				<a class='page-link text-decoration-none border-0 bg-secondary' href='#' disabled>
+					<span aria-hidden='true'>$this->first</span>
+				</a>
+			</li>
+			";
 		}
 	}
 
@@ -136,9 +142,15 @@ class ADODB_Pager {
 				$dato = str_replace("next_page=1","next_page=".($this->rs->AbsolutePage() + 1), $this->link_ajax);
 			else
 				$dato = $this->toRefLinks.'&'.$this->id."_next_page=".($this->rs->AbsolutePage() + 1);
-			print "<a href=\"$dato\">$this->next</a> &nbsp;";
+			print "<li class='page-item'><a class='page-link text-decoration-none border-0 bg-primary' href=\"$dato\">$this->next</a></li>";
 		} else {
-			print "$this->next &nbsp; ";
+			print "
+				<li class='page-item disabled'>
+					<a class='page-link text-decoration-none border-0 bg-secondary' href='#' disabled>
+						<span aria-hidden='true'>$this->next</span>
+					</a>
+				</li>
+			";
 		}
 	}
 
@@ -159,9 +171,15 @@ class ADODB_Pager {
 				$dato = str_replace("next_page=1","next_page=".$this->rs->LastPageNo(), $this->link_ajax);
 			else
 				$dato = $this->toRefLinks.'&'.$this->id."_next_page=".$this->rs->LastPageNo();
-			print "<a href=\"$dato\">$this->last</a> &nbsp;";
+			print "<li class='page-item'><a class='page-link text-decoration-none border-0 bg-primary' href=\"$dato\">$this->last</a> </li>";
 		} else {
-			print "$this->last &nbsp; ";
+			print "
+				<li class='page-item disabled'>
+					<a class='page-link text-decoration-none border-0 bg-secondary' href='#' disabled>
+						<span aria-hidden='true'>$this->last</span>
+					</a>
+				</li>
+			";
 		}
 	}
 
@@ -194,18 +212,24 @@ class ADODB_Pager {
                 else
                     $dato = "$this->toRefLinks&$link=$pos";
 
-                $numbers .= "<a href=\"$dato\">$this->startLinks</a>  ";
+                $numbers .= "<li class='page-item'><a class='page-link text-decoration-none border-0 bg-primary' href=\"$dato\">$this->startLinks</a>  </li>";
             }
 
             for($i=$start; $i <= $end; $i++) {
                 if ($this->rs->AbsolutePage() == $i)
-                    $numbers .= "$i  ";
+                    $numbers .= "
+						<li class='page-item disabled'>
+							<a class='page-link text-decoration-none border-0 bg-secondary' href='#' disabled>
+								<span aria-hidden='true' class='text-light'>$i</span>
+							</a>
+						</li>
+					";
                 else {
                     if ($this->paginador_ajax)
                         $dato = str_replace("next_page=1","next_page=".$i, $this->link_ajax);
                     else
                         $dato = "$this->toRefLinks&$link=$i";
-                    $numbers .= "<a href=\"$dato\">$i</a> ";
+                    $numbers .= "<li class='page-item'><a class='page-link text-decoration-none border-0 bg-primary' href=\"$dato\">$i</a> </li>";
                 }
             }
 
@@ -214,9 +238,9 @@ class ADODB_Pager {
                     $dato = str_replace("next_page=1","next_page=".$i, $this->link_ajax);
                 else
                     $dato = "$this->toRefLinks&$link=$i";
-                $numbers .= "<a href=\"$dato\">$this->moreLinks</a>  ";
+                $numbers .= "<li class='page-item'><a class='page-link text-decoration-none border-0 bg-primary' href=\"$dato\">$this->moreLinks</a>  </li>";
             }
-            print $numbers . ' &nbsp; ';
+            print $numbers;
 
 	}
 	// Link to previous page
@@ -228,9 +252,15 @@ class ADODB_Pager {
 				$dato = str_replace("next_page=1","next_page=".($this->rs->AbsolutePage() - 1), $this->link_ajax);
 			else
 				$dato = $this->toRefLinks.'&'.$this->id."_next_page=".($this->rs->AbsolutePage() - 1);
-			print "<a href=\"$dato\">$this->prev</a> &nbsp;";
+			print "<li class='page-item'><a class='page-link text-decoration-none border-0 bg-primary' href=\"$dato\">$this->prev</a> </li>";
 		} else {
-			print "$this->prev &nbsp; ";
+			print "
+				<li class='page-item disabled'>
+					<a class='page-link text-decoration-none border-0 bg-secondary' href='#' disabled>
+						<span aria-hidden='true'>$this->prev</span>
+					</a>
+				</li>
+			";
 		}
 	}
 
@@ -265,6 +295,10 @@ class ADODB_Pager {
 	function RenderNav()
 	{
         ob_start();
+		$s = '
+		<nav class="d-flex flex-column align-items-center bg-light">
+  			<ul class="pagination">
+		';
 		if (!$this->rs->AtFirstPage()) {
 			$this->Render_First();
 			$this->Render_Prev();
@@ -282,8 +316,12 @@ class ADODB_Pager {
 			$this->Render_Next(false);
 			$this->Render_Last(false);
 		}
-		$s = ob_get_contents();
+		$s .= ob_get_contents();
 		ob_end_clean();
+		$s .= '
+			</ul>
+		</nav>
+		';
 		return $s;
 
 	}
@@ -330,7 +368,6 @@ class ADODB_Pager {
 		$footer = $this->RenderPageCount();
 		$rs->Close();
 		$this->rs = false;
-
 		$this->RenderLayout($header,$grid,$footer," class=borde_tab");
 	}
 
@@ -339,8 +376,7 @@ class ADODB_Pager {
 
 	function RenderLayout($header,$grid,$footer,$attributes='class=borde_tab')
 	{
-
-		echo "<table width=100% class=borde_tab border=0 >
+		echo "<table width=100%  border=0 style='margin-top:50px;'>
 			<tr ><td >",
 				$grid,
 			"</td></tr>

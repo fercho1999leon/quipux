@@ -79,16 +79,16 @@ include_once "$ruta_raiz/js/ajax.js";
         document.getElementById('div_mensaje_alerta').style.display = 'none';
     }
 </script>
-<body  id="page-bg" class="f-default light_slate" onload="cargar_alerta_mensaje()">
+<body  class="f-default light_slate bg-primary" onload="cargar_alerta_mensaje()">
   <form name='formulario' action="" target="_parent" method="post"> 
-    <div id="header">
+    <div id="header" >
         <div id="div_mensaje_alerta" style="height: 70px; width: 522px; overflow: auto; position: fixed; top: 2px; right: 210px; z-index: 5; display: none;"></div>
         <table width="100%" cellpadding="0" cellspacing="0">
             <tr height="74px">
                 <td width="10%" align="rigth" valign="middle">&nbsp;&nbsp;&nbsp;
                     <img src="<?=$ruta_raiz?>/imagenes/logo_ing2.png" width="100" alt="Quipux"/></td>
                 <td width="70%">
-                    <h2>Sistema de gestion documental ISTRED</h2>
+                    <h2 class="text-light">Sistema de gestion documental ISTRED</h2>
                 </td>
                 <td width="20%">
                     <div id="nav-big">
@@ -97,24 +97,24 @@ include_once "$ruta_raiz/js/ajax.js";
                                 <td>
                                     <br>
                                 </td>
-                                <td>
+                                <!--<td>
                                     <ul>
                                         <li class="active_menu">
                                             <a href='#' onClick="popup_firma_digital();" class="b20" target="_self"></a>
                                         </li>
                                     </ul>
-                                </td>
+                                </td>-->
                                 <td>
                                     <ul>
-                                        <li class="active_menu">
-                                            <a href="inf_soporte.php" class="b6" target="mainFrame"></a>
+                                        <li class="active_menu d-flex flex-row-reverse align-items-center ">
+                                            <a href="inf_soporte.php" id="help-animation"  class="b6 p-2 d-flex flex-row-reverse align-items-center" target="mainFrame"><i class="fa-solid fa-circle-question text-light " style="font-size: 2rem;"></i></a>
                                         </li>
                                     </ul>
                                 </td>
                                 <td>
                                     <ul>
-                                        <li class="active_menu">
-                                            <a href='#' onClick="cerrar_session();" class="b51"></a>
+                                        <li class="active_menu d-flex flex-row-reverse align-items-center ">
+                                            <a href='#' onClick="cerrar_session();" id="close-animation" class="b51 p-2 d-flex flex-row-reverse align-items-center"><i class="fa-solid fa-arrow-right-from-bracket text-light " style="font-size: 2rem;"></i></a>
                                         </li>
                                     </ul>
                                 </td>
@@ -131,5 +131,23 @@ include_once "$ruta_raiz/js/ajax.js";
         </table>
     </div>
   </form>
+  
+  <script>
+    
+    $('#help-animation').on('mouseenter',function(){
+        $('#help-animation > svg').addClass('fa-bounce');
+    });
+    $('#help-animation').on('mouseleave',function(){
+        $('#help-animation > svg').removeClass('fa-bounce');
+    });
+
+    $('#close-animation').on('mouseenter',function(){
+        $('#close-animation > svg').addClass('fa-beat-fade');
+    });
+    $('#close-animation').on('mouseleave',function(){
+        $('#close-animation > svg').removeClass('fa-beat-fade');
+    });
+  </script>
+  <?php echo html_pie_pagina() ?>
 </body>
 </html>

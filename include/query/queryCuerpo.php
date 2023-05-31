@@ -42,7 +42,7 @@ switch($db->driver) {
         $where_fecha_documento = " and ($fecha_documento::date between '$txt_fecha_desde' and '$txt_fecha_hasta')";
 
     $info_usuario_query = " - USR ".$_SESSION["usua_codi"]." - ".date("Y-m-d H:i:s")."<br>";
-    $firma='<div align="center"><a href="#" class="Ntooltip"><img src="'.$ruta_raiz.'/imagenes/key-yellow.png" alt="Firmado digitalmente" border="0"><span>Firmado digitalmente</span></div>';            
+    $firma='<i class="fa fa-file-signature text-secondary" style=\"font-size: 1rem;\"></i>';            
     $urgente='<div align="center"><a href="#" class="Ntooltip"><img src="'.$ruta_raiz.'/imagenes/urgente.png" width="13" height="15" alt="Urgente" border="0"><span>Urgente</span></div>';            
     
     switch ($carpeta) {
@@ -53,7 +53,7 @@ switch($db->driver) {
             $isql = "select -- En elaboracion $info_usuario_query
                     radi_nume_radi as \"CHK_CHKANULAR\"
                     ,case when upper(cat_descr)='URGENTE' then '$urgente' else '' end as \" \"
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,ver_usuarios(radi_usua_rem,',') as \"De\"
                     ,ver_usuarios(radi_usua_dest,',') as \"Para\"
@@ -81,7 +81,7 @@ switch($db->driver) {
         case 2:  // Recibidos
             if (isset ($replicacion) && $replicacion && $config_db_replica_cuerpo_paginador!=$config_db_replica_bandeja_recibidos) $db = new ConnectionHandler($ruta_raiz,$config_db_replica_bandeja_recibidos);
             if ($orderNo=='') $orderNo=8;
-            $recibido='<div align="center"><a href="#" class="Ntooltip"><img src="'.$ruta_raiz.'/imagenes/folder_page.png" alt="Recibido" border="0"><span>Recibido</span></div>';
+            $recibido='<div align="center"><i class="fa fa-inbox text-secondary" style=\"font-size: 1rem; \"></i></div>';
             $vencido='<div align="center"><a href="#" class="Ntooltip"><img src="'.$ruta_raiz.'/imagenes/vencidos.png"  alt="Vencido" border="0"><span>Vencido Reasignado</span></div>';
             $reasignado='<div align="center"><a href="#" class="Ntooltip"><img src="'.$ruta_raiz.'/imagenes/email_go.png"  alt="Reasignado" border="0"><span>Reasignado</span></div>';
             $recibido_de_tarea='<div align="center"><a href="#" class="Ntooltip"><img src="'.$ruta_raiz.'/imagenes/recibido_tareas.png"  alt="Recibido de Tarea" border="0"><span>Recibido de Tarea</span></div>';
@@ -94,7 +94,7 @@ switch($db->driver) {
                        else '$reasignado' end) end) end as \"SCR_  \"
                     ,case when radi_fech_firma is not null then '$firma' else '' end as \"SCR_   \"
             
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"                    
                     ,ver_usuarios(radi_usua_rem,',') as \"De\"
                     ,radi_asunto as \"Asunto\"
@@ -126,7 +126,7 @@ switch($db->driver) {
 
             $isql = "select -- Eliminados $info_usuario_query
                     radi_nume_radi as \"CHK_CHKANULAR\"
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,ver_usuarios(radi_usua_dest,',') as \"Para\"
                      ,radi_asunto as \"Asunto\"
@@ -153,7 +153,7 @@ switch($db->driver) {
             $isql = "select -- No enviados $info_usuario_query
                     radi_nume_radi as \"CHK_CHKANULAR\"
                     ,case when upper(cat_descr)='URGENTE' then '$urgente' else '' end as \" \"                    
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,ver_usuarios(radi_usua_dest,',') as \"Para\"
                     ,radi_asunto as \"Asunto\"
@@ -182,7 +182,7 @@ switch($db->driver) {
                     radi_nume_radi as \"CHK_CHKANULAR\"
                     ,case when radi_fech_firma is not null then '$firma' else '' end as \"  \"
                     ,case when upper(cat_descr)='URGENTE' then '$urgente' else '' end as \" \"                    
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,ver_usuarios(radi_usua_rem,',') as \"De\"
                     ,ver_usuarios(radi_usua_dest,',') as \"Para\"
@@ -212,7 +212,7 @@ switch($db->driver) {
                     radi_nume_radi as \"CHK_CHKANULAR\"
                     ,case when radi_fech_firma is not null then '$firma' else '' end as \"  \"
                     ,case when upper(cat_descr)='URGENTE' then '$urgente' else '' end as \" \"                    
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,ver_usuarios(radi_usua_rem,',') as \"De\"
                     ,ver_usuarios(radi_usua_dest,',') as \"Para\"
@@ -240,7 +240,7 @@ switch($db->driver) {
 
             $isql = "select -- Bandeja Reasignados $info_usuario_query
                     radi_nume_radi as \"CHK_CHKANULAR\"
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,substr(fecha_documento::text,1,19)||' $descZonaHoraria' as \"Fecha Documento\"
                     ,usua_dest as \"Reasignado a\"
@@ -287,7 +287,7 @@ switch($db->driver) {
             $isql = "select -- Bandeja Informados $info_usuario_query
                     radi_nume_radi AS \"CHK_checkValue\"
                     ,case when upper(cat_descr)='URGENTE' then '$urgente' else '' end as \" \"                    
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,ver_usuarios(usua_info::text,',')  AS \"Informador\"
                     ,radi_asunto AS \"Asunto\"
@@ -316,7 +316,7 @@ switch($db->driver) {
                     radi_nume_radi as \"CHK_CHKANULAR\"
                     ,case when radi_fech_firma is not null then '$firma' else '' end as \"  \"
                     ,case when upper(cat_descr)='URGENTE' then '$urgente' else '' end as \" \"                    
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,ver_usuarios(radi_usua_rem,',') as \"De\"
                     ,radi_asunto as \"Asunto\"
@@ -423,7 +423,7 @@ switch($db->driver) {
             if ($version_light) $where_fecha_documento = " and (radi_fech_radi::date between '$txt_fecha_desde' and '$txt_fecha_hasta')";
 
             $isql = "select -- Enviados Ciudadanos $info_usuario_query
-                      radi_nume_radi as \"CHK_CHKANULAR\",'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                      radi_nume_radi as \"CHK_CHKANULAR\",'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     , 'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     , coalesce(u.usua_nomb,'')||' '||coalesce(u.usua_apellido,'') as \"Para\"
                     , i.inst_nombre as \"Institución\"
@@ -448,7 +448,7 @@ switch($db->driver) {
             if ($version_light) $where_fecha_documento = " and (radi_fech_radi::date between '$txt_fecha_desde' and '$txt_fecha_hasta')";
             
             $isql = "select  -- Recibidos Ciudadanos $info_usuario_query
-                      radi_nume_radi as \"CHK_CHKANULAR\",'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                      radi_nume_radi as \"CHK_CHKANULAR\",'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     , 'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     , coalesce(u.usua_nomb,'')||' '||coalesce(u.usua_apellido,'') as \"De\"
                     , i.inst_nombre as \"Institución\"
@@ -475,7 +475,7 @@ switch($db->driver) {
             $isql = "select -- Bandeja Pendientes recibidos de ciudadanos $info_usuario_query                    
                     radi_nume_radi as \"CHK_CHKANULAR\"
                     ,case when radi_fech_firma is not null then '$firma' else '' end as \"SCR_\"
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,ver_usuarios(radi_usua_rem,',') as \"De\"
                     ,ver_usuarios(radi_usua_dest,',') as \"Para\"
@@ -506,7 +506,7 @@ switch($db->driver) {
             $isql = "select -- Documentos por Imprimir $info_usuario_query
                     radi_nume_radi as \"CHK_CHKANULAR\"
                     ,case when upper(cat_descr)='URGENTE' then '$urgente' else '' end as \" \"                    
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,case when confidencial=0 then '<img src=\"$ruta_raiz/imagenes/document_down.jpg\" title=\"Descargar documento\" border=0 style=\"width: 24px; height: 20px;\">' end as \"SCR_   \"
                     ,case when confidencial=0 then 'anexos_descargar_archivo(\"'||radi_nume_radi||'\", \"\", 0, \"download\")' end as \"HID_PREVIEW\"
@@ -546,7 +546,7 @@ switch($db->driver) {
 
             $isql = "select -- En elaboracion - Ciudadanos Firma $info_usuario_query
                     radi_nume_radi as \"CHK_CHKANULAR\"
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,ver_usuarios(radi_usua_dest,',') as \"Para\"
                     ,radi_asunto as \"Asunto\"
@@ -574,7 +574,7 @@ switch($db->driver) {
             $isql = "select -- Recibidos - Ciudadanos Firma $info_usuario_query                    
                     radi_nume_radi as \"CHK_CHKANULAR\"
                     ,case when radi_fech_firma is not null then '$firma' else '' end as \"SCR_\"
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,ver_usuarios(radi_usua_rem,',') as \"De\"
                     ,radi_asunto as \"Asunto\"
@@ -601,7 +601,7 @@ switch($db->driver) {
 
             $isql = "select -- No enviados - Ciudadanos Firma $info_usuario_query
                     radi_nume_radi as \"CHK_CHKANULAR\"
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,ver_usuarios(radi_usua_dest,',') as \"Para\"
                     ,radi_asunto as \"Asunto\"
@@ -629,7 +629,7 @@ switch($db->driver) {
 
             $isql = "select -- Bandeja Enviados - Ciudadanos Firma $info_usuario_query                    ,case when radi_fech_firma is not null then '$firma' else '' end as \"SCR_\"
                     radi_nume_radi as \"CHK_CHKANULAR\"
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     ,ver_usuarios(radi_usua_rem,',') as \"De\"
                     ,ver_usuarios(radi_usua_dest,',') as \"Para\"
@@ -661,7 +661,7 @@ switch($db->driver) {
             
             $isql = "select  -- Bandeja Nuevos
                     b.radi_nume_radi as \"CHK_CHKANULAR\"
-                    ,'<img src=\"$ruta_raiz/iconos/popup.png\" border=0>' as \"SCR_ \"
+                    ,'<i class=\"fa-regular fa-window-restore text-secondary\" style=\"font-size: 1rem; \"></i>' as \"SCR_ \"
                     ,'mostrar_documento(\"'||radi_nume_radi||'\",\"'||radi_nume_text||'\",\"'||$carpeta||'\")' as \"HID_POPUP\"
                     --, coalesce(ua.usua_nomb,'')||' '||coalesce(ua.usua_apellido,'') as \"Enviado Por\"
                     , ver_usuarios('-' || ua.usua_codi || '-',',') as \"Enviado Por\"

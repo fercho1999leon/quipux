@@ -113,7 +113,7 @@ echo "<html>".html_head();
 <script type="text/javascript" src="<?=$ruta_raiz?>/js/funciones.js"></script>
 
 <? include_once "$ruta_raiz/js/ajax.js"; ?>
-<script type="text/javascript" src="<?=$ruta_raiz?>/js/ckeditor/ckeditor.js"></script>
+<script src="<?=$ruta_raiz?>/js/ckeditor4/ckeditor.js"></script>
 <script type="text/javascript" src="<?=$ruta_raiz?>/js/base64.js"></script>
 <script type="text/javascript" src="<?=$ruta_raiz?>/js/md5.js"></script>
 <script type="text/javascript">
@@ -406,6 +406,22 @@ function refrescar_pagina(origen,cod_impresion)
     }
 
     function cargar_editor() {
+        /*ClassicEditor.create(document.querySelector('#raditexto'),{
+            toolbar: {
+                items: [
+                    'undo', 'redo',
+                    '|', 'heading',
+                    '|', 'bold', 'italic',
+                    '|', 'link', 'uploadImage', 'insertTable', 'mediaEmbed',
+                    '|', 'bulletedList', 'numberedList', 'outdent', 'indent'
+                ]
+            }
+        }).then( editor => {
+            window.editor = editor;
+        } )
+        .catch( err => {
+            console.error( err );
+        } );*/
         CKEDITOR.replace('raditexto');
 
     }
@@ -1526,7 +1542,7 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
                     <td class="listado1" colspan="4">
                         <div id="div_cuerpo" style="display: none;"></div>
                         <center>
-                            <textarea id='raditexto' name='raditexto' cols='100' rows='10'></textarea>
+                            <textarea id='raditexto' name='raditexto' cols='100' rows='10' ></textarea>
                         </center>
                     </td>
                 </tr>

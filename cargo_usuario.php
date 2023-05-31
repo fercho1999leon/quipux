@@ -36,7 +36,7 @@ $rs = $db->query($sql);
 if ($rs and !$rs->EOF)
 { // Muestra el combo de cargos
     $nombre = "&nbsp;&nbsp;Usuario: ";
-    $cargoCombo = "<select name='cargo_usuario' id='cargo_usuario' class='selectCargo' style='width:850px' onchange='reiniciar_session();'>";
+    $cargoCombo = "<select name='cargo_usuario' id='cargo_usuario' class='form-select form-select-sm' style='width:850px' onchange='reiniciar_session();'>";
     while (!$rs->EOF){
         if($rs->fields["USUA_CODI"] == $_SESSION["usua_codi"])
             $seleccion = 'selected';
@@ -55,6 +55,6 @@ if ($rs and !$rs->EOF)
         $rs->MoveNext();
     }
     $cargoCombo .= "</select>";
-    echo "<table border='0' cellspacing='2' cellpadding='0' class='selectCargo' style='border: none;' width='100%'><tr><td>$nombre</td><td>$cargoCombo</td></tr></table>";
+    echo "<table border='0' cellspacing='2' cellpadding='0' class='selectCargo' style='border: none;' width='100%'><tr><td class='text-light'>$nombre</td><td>$cargoCombo</td></tr></table>";
 }
 ?>

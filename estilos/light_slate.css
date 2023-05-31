@@ -1,5 +1,4 @@
 /* light slate specific css */
-
 /* fonts */
 h1 {
 	color: #456387;
@@ -709,20 +708,20 @@ th {
 	white-space: normal;
 }
 
-.botones {
+/*.botones {
 
 	background-color: #FFAE4a;
 	color: #FFFFFF;
 	border: thin solid #aaa;
-}
+}*/
 
-.botones_largo {
+/*.botones_largo {
 
 	background-color: #FFAE4a;
 	color: #FFFFFF;
 	border: thin solid #aaa;
 
-}
+}*/
 
 .botones_pequeno {
 

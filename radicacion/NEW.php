@@ -1228,14 +1228,14 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
 <table width="99%" align="center" border="0" cellspacing="4" cellpadding="0">
 <tr>
       <td width="50%" align="left">
-          <input type="button" name="btn_usuarios" id="btn_usuarios" value="Buscar De/Para" class="botones_largo" title="Buscar por nombre o cédula, al Remitente, Destinatarios del Documento, y/o Con copia a"
+          <input type="button" name="btn_usuarios" id="btn_usuarios" value="Buscar De/Para" class="btn btn-primary m-2" title="Buscar por nombre o cédula, al Remitente, Destinatarios del Documento, y/o Con copia a"
                             onClick="Start('buscar_usuario_nuevo.php');">&nbsp;&nbsp;
         <?php if ($ent != 2) { ?>
-            <input type='button' onClick='grabar_doc(1)' name='Submit1' value='Vista Previa' class='botones' title="Graba el documento y genera una vista previa del mismo">&nbsp;&nbsp;
+            <input type='button' onClick='grabar_doc(1)' name='Submit1' value='Vista Previa' class="btn btn-primary m-2" title="Graba el documento y genera una vista previa del mismo">&nbsp;&nbsp;
             
         <? } ?>
-        <input type='button' onClick='grabar_doc(2)' name='Submit2' value='Aceptar' class="botones" title="Graba el documento y pasa a la página de consulta del documento">&nbsp;&nbsp;
-        <input type='button' onClick='cancelar()' name='Submit3' value='Cancelar' class="botones" title="Sale de la creación de documentos sin grabar">
+        <input type='button' onClick='grabar_doc(2)' name='Submit2' value='Aceptar' class="btn btn-primary m-2" title="Graba el documento y pasa a la página de consulta del documento">&nbsp;&nbsp;
+        <input type='button' onClick='cancelar()' name='Submit3' value='Cancelar' class="btn btn-primary m-2" title="Sale de la creación de documentos sin grabar">
 
     </td>
 </tr>
@@ -1706,5 +1706,6 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
         </div>
         <div id="div_popup_pantalla_tabajo" style="background-color:white; width: 100%; height: 94%; position: relative; overflow: auto;"></div>
     </div>
+    <?echo html_pie_pagina() ?>
   </body>
 </html>

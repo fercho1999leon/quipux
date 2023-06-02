@@ -41,7 +41,7 @@ function crear_grupo_bandeja($id, $nombre, $items) {
                 '.$nombre.'
             </button>
             <div class="collapse my-2 mx-1" id="'.$id.'">
-                <div class="card card-body">
+                <div class="card">
                     <div class="btn-group-vertical ps-1 pe-3" role="group" aria-label="Vertical button group">
                         '.$items.'
                     </div>

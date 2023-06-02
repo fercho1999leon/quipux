@@ -42,8 +42,8 @@ switch($db->driver) {
         $where_fecha_documento = " and ($fecha_documento::date between '$txt_fecha_desde' and '$txt_fecha_hasta')";
 
     $info_usuario_query = " - USR ".$_SESSION["usua_codi"]." - ".date("Y-m-d H:i:s")."<br>";
-    $firma='<i class="fa fa-file-signature text-secondary" style=\"font-size: 1rem;\"></i>';            
-    $urgente='<div align="center"><a href="#" class="Ntooltip"><img src="'.$ruta_raiz.'/imagenes/urgente.png" width="13" height="15" alt="Urgente" border="0"><span>Urgente</span></div>';            
+    $firma='<i class="fa fa-file-signature text-secondary" data-mdb-toggle="tooltip" title="Firmado Electronicamente" style=\"font-size: 1rem;\"></i>';            
+    $urgente='<i class="fa-solid fa-flag" style="color: #ff4284; font-size: 1rem;" data-mdb-toggle="tooltip" title="Urgente"><span>Urgente</span></i>';            
     
     switch ($carpeta) {
 

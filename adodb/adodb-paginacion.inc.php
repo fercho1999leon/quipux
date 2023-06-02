@@ -229,7 +229,7 @@ class ADODB_Pager {
                         $dato = str_replace("next_page=1","next_page=".$i, $this->link_ajax);
                     else
                         $dato = "$this->toRefLinks&$link=$i";
-                    $numbers .= "<li class='page-item'><a class='page-link text-decoration-none border-0 bg-primary' href=\"$dato\">$i</a> </li>";
+                    $numbers .= "<li class='page-item'><a class='page-link text-decoration-none border-0 bg-primary text-light' href=\"$dato\">$i</a> </li>";
                 }
             }
 

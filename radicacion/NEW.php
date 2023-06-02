@@ -953,32 +953,7 @@ function mostrar_div_usuarios() {
 
 <style type="text/css">
 
-/*Tool Tip*/
-a.Ntooltip {
-position: relative; /* es la posición normal */
-text-decoration: none !important; /* forzar sin subrayado */
-color:#0080C0 !important; /* forzar color del texto */
-font-weight:bold !important; /* forzar negritas */
-}
 
-a.Ntooltip:hover {
-z-index:999; /* va a estar por encima de todo */
-background-color:#000000; /* DEBE haber un color de fondo */
-}
-
-a.Ntooltip span {
-display: none; /* el elemento va a estar oculto */
-}
-
-a.Ntooltip:hover span {
-display: block; /* se fuerza a mostrar el bloque */
-position: absolute; /* se fuerza a que se ubique en un lugar de la pantalla */
-top:2em; left:2em; /* donde va a estar */
-width:100px; /* el ancho por defecto que va a tener */
-padding:5px; /* la separación entre el contenido y los bordes */
-background-color: #FBFBEF; /* el color de fondo por defecto */
-color: #000000; /* el color de los textos por defecto */
-}
 /*Tool Tip*/
 /**/
 </style>
@@ -1314,7 +1289,7 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
     </tr>
         <tr>
             <td colspan="5">              
-                <iframe border="0" class="borde_tab" align="center" height="65" width="100%" name="ifr_usr" id="ifr_usr" src="<?=$ifr_usr_env?>">
+                <iframe border="0" class="borde_tab" align="center" height="125" width="100%" name="ifr_usr" id="ifr_usr" src="<?=$ifr_usr_env?>">
                     Su navegador no soporta iframes, por favor actualicelo.</iframe>                
                 <br />
             </td>
@@ -1328,56 +1303,65 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
         } else {
 ?>
         <tr valign="middle">
+        <td>
+        <div class="container">
+            
             <?php  if ($ent==2) { ?>
-                    <td width="15%" class="listado1_ver">Fecha Doc: (dd/mm/aaaa)</td>
-                    <td width="60%" class="listado1" colspan="4">
+                <div class="row m-1">
+                    <div class="col-sm-4 d-flex flex-row">
+                        <label class="listado1_ver mx-3">Fecha Doc: (dd/mm/aaaa)</label>
                         <input type="hidden" name='raditipo' id='raditipo' value='2'>
+                        <div id="color-calendar"></div>
                         <script type="text/javascript">
                                 dateAvailable1.date = "<?=$fecha_doc?>";
                                 dateAvailable1.writeControl();
                                 dateAvailable1.dateFormat="dd-MM-yyyy";
                         </script>
-
+                    </div>
+                
+            
             <?php  } else {?>
-                    <td width="15%" class="listado1_ver">Tipo de Documento:</td>
-                    <td width="55%" class="listado1" colspan="4">
+                <div class="row m-1">
+                    <div class="col-sm-4 d-flex flex-row">
+                        <label class="listado1_ver mx-3">Tipo de Documento:</label>
                         <input type="hidden" name='fecha_doc' value='<?=$fecha_doc?>'>
             <?php
                     $query = "Select trad_descr, trad_codigo from tiporad where trad_tipo='S' and trad_estado=1 and trad_inst_codi in (0,".$_SESSION["inst_codi"].") order by 1";
                     $rs=$db->conn->query($query);
                     $tmp = "";
                     if(!$rs->EOF)
-                        print $rs->GetMenu2("raditipo", $raditipo, "", false,"","class='select' id='raditipo' onChange='mostrarOpcImp(); cambio_cuerpo(0)'" );
+                        print $rs->GetMenu2("raditipo", $raditipo, "", false,"","class='form-select form-select-sm w-25' id='raditipo' onChange='mostrarOpcImp(); cambio_cuerpo(0)'" );
+                    ?></div><?
                  }
             ?>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <font class="listado1_ver">Categor&iacute;a:</font>&nbsp;&nbsp;
+
+                <div class="col-sm-4 d-flex flex-row">
+                <label class="listado1_ver mx-3">Categor&iacute;a:</label>
                 <?php
                     $queryCat = "Select cat_descr, cat_codi from categoria order by 1";
                     $rsCat=$db->conn->query($queryCat);
                     if(!$rsCat->EOF)
-                        print $rsCat->GetMenu2("cat_codi", 0+$cat_codi,  "", false,"","class='select' " );
+                        print $rsCat->GetMenu2("cat_codi", 0+$cat_codi,  "", false,"","class='form-select form-select-sm w-25' " );
                 ?>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+
+                <div class="col-sm-4 d-flex flex-row">
                 <?php
                     $queryCod = "Select cod_descripcion, cod_codi from codificacion where inst_codi in (0,".(0+$_SESSION["inst_codi"]).") order by 1";
                     $rsCod=$db->conn->query($queryCod);
                     if(!$rsCod->EOF)
                     {
                         ?>
-                        <font class="listado1_ver">Tipificaci&oacute;n:</font>&nbsp;&nbsp;
+                        <font class="listado1_ver mx-3">Tipificaci&oacute;n:</font>&nbsp;&nbsp;
                         <?php
-                        print $rsCod->GetMenu2("cod_codi", 0+$cod_codi,  "", false,"","class='select' style='width:220px' " );
+                        print $rsCod->GetMenu2("cod_codi", 0+$cod_codi,  "", false,"","class='form-select form-select-sm w-50' " );
                     }
                 ?>
-                </td>
-                </tr>
+                </div>
 <?php  } //IF CIUDADANO  ?>
-                <tr>
-                <td width="15%" class="listado1_ver">No. Referencia:</td>
-                <td width="55%" class="listado1" colspan="4">
+                <div class="row m-1"> 
+                    <div class="col-sm-5 d-flex flex-row">
+                        <label width="15%" class="listado1_ver mx-1">No. Referencia:</label>
                 <?php
                 //CONTROL CAJA DE TEXTO REFERENCIA READONLY
                 if ($ent==2)
@@ -1395,9 +1379,10 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
                         $readReferencia = "readonly";                        
                 }
                 ?>
-                <input alt="Ingrese un Documento asociado" name="referencia" id="referencia" type="text" maxlength="80" size="60" class="tex_area"
-                value="<?=$referencia?>" <?=$readReferencia?> onkeyup="validaEspacio(event, this, '<?=$readReferencia?>');" onblur="quitarCaracter(this, ' ');"/>
-
+                    <input class="form-control form-control-sm" alt="Ingrese un Documento asociado" name="referencia" id="referencia" type="text" maxlength="80" size="60" class="tex_area"
+                    value="<?=$referencia?>" <?=$readReferencia?> onkeyup="validaEspacio(event, this, '<?=$readReferencia?>');" onblur="quitarCaracter(this, ' ');"/>
+                </div>
+                </div>
                 <?php
                 // MOSTRAR ICONOS DE REFERENCIA
                 if ($radicado["radi_padre"]!='') {
@@ -1420,40 +1405,42 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
                         }
                     }
                 }
+                    ?>
                 
+                        <div class="col-sm-11 d-flex flex-row">
+                            <label class="listado1_ver mx-3">Asunto:</label>
+                            <textarea id="asunto" name="asunto" cols="150" class="form-control form-control-sm" rows="1" onkeypress="return limita(event,'asunto','spn_numero_caracteres_disponibles',250);" ><?php echo $asunto ?></textarea>
+                            <span id="spn_numero_caracteres_disponibles"></span>
+                            <!-- Copiar notas cuando en un doc nuevo onKeyUp='this.value=this.value.substring(0,250)'-->
+                            <input id="notas" name="notas" type="hidden" value="<?php echo $notas ?>">  
+                        </div>
+                    <? 
                         if ($_SESSION["tipo_usuario"]==1){//solo funcionarios
-                             //REFERENCIA MOSTRAR ICONO
-                             $nuradAso="'".$nurad."'";
-                             $refe_padreAso="'".$refe_padre."'";
-                             if ($ent==2){//externo
-                                 if ($radi_tipo==2)
-                                    echo '&nbsp<a href="javascript:;" onClick="AsociarDocumento('.$nuradAso.','.$refe_padreAso.','.$ent.');" class="Ntooltip"><img src="'.$ruta_raiz.'/imagenes/document_attach.jpg" width="17" height="17" alt="Asociar Documento" border="0"><span>Asociar Documento</span></a>';
-                                 elseif($radi_tipo==''){
-                                     if($textrad!='')
-                                        echo '&nbsp<a href="javascript:;" onClick="AsociarDocumento('.$nuradAso.','.$refe_padreAso.','.$ent.');" class="Ntooltip"><img src="'.$ruta_raiz.'/imagenes/document_attach.jpg" width="17" height="17" alt="Asociar Documento" border="0"><span>Asociar Documento</span></a>';
-                                 }
-                            }else{                             
-                                    if ($refe_padre==''){//NUEVO
-                                        if (substr(trim($textrad),-4)=='TEMP')//SI YA ESTA GUARDADO
-                                            echo '&nbsp<a href="javascript:;" onClick="AsociarDocumento('.$nuradAso.','.$refe_padreAso.',2);" class="Ntooltip"><img src="'.$ruta_raiz.'/imagenes/document_attach.jpg" width="17" height="17" alt="Asociar Documento" border="0"><span>Asociar Documento</span></a>';
-                                    }//SI ES DE REFERENCIA
-                                    else                                    
-                                        echo '&nbsp<a href="javascript:;" onClick="AsociarDocumento('.$nuradAso.','.$refe_padreAso.',3);" class="Ntooltip"><img src="'.$ruta_raiz.'/imagenes/document_attach.jpg" width="17" height="17" alt="Asociar Documento" border="0"><span>Asociar Documento</span></a>';
-                                
-                            }//FIN ELSE
-                        }
-                         ?>
-                </td>
-                </tr>
-                <tr>
-                    <td class="listado1_ver">Asunto:</td>
-                    <td class="listado1" colspan="4">
-                        <textarea id="asunto" name="asunto" cols="150" class="tex_area" rows="1" onkeypress="return limita(event,'asunto','spn_numero_caracteres_disponibles',250);" ><?php echo $asunto ?></textarea>
-                        <span id="spn_numero_caracteres_disponibles"></span>
-                        <!-- Copiar notas cuando en un doc nuevo onKeyUp='this.value=this.value.substring(0,250)'-->
-                        <input id="notas" name="notas" type="hidden" value="<?php echo $notas ?>">  
-                    </td>
-                </tr>
+                            //REFERENCIA MOSTRAR ICONO
+                            $nuradAso="'".$nurad."'";
+                            $refe_padreAso="'".$refe_padre."'";
+                            if ($ent==2){//externo
+                                if ($radi_tipo==2)
+                                   echo '<div class="col-sm-1 d-flex flex-row">&nbsp<a href="javascript:;" onClick="AsociarDocumento('.$nuradAso.','.$refe_padreAso.','.$ent.');" class="Ntooltip" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="Asociar Documento"><i class="fa-solid fa-file-circle-plus text-primary" style="font-size:1.5rem;"></i></a>';
+                                elseif($radi_tipo==''){
+                                    if($textrad!='')
+                                       echo '<div class="col-sm-1 d-flex flex-row">&nbsp<a href="javascript:;" onClick="AsociarDocumento('.$nuradAso.','.$refe_padreAso.','.$ent.');" class="Ntooltip" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="Asociar Documento"><i class="fa-solid fa-file-circle-plus text-primary" style="font-size:1.5rem;"></i></a>';
+                                }
+                           }else{                             
+                                   if ($refe_padre==''){//NUEVO
+                                       if (substr(trim($textrad),-4)=='TEMP')//SI YA ESTA GUARDADO
+                                           echo '<div class="col-sm-1 d-flex flex-row">&nbsp<a href="javascript:;" onClick="AsociarDocumento('.$nuradAso.','.$refe_padreAso.',2);" class="Ntooltip" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="Asociar Documento"><i class="fa-solid fa-file-circle-plus text-primary" style="font-size:1.5rem;"></i></a>';
+                                   }//SI ES DE REFERENCIA
+                                   else                                    
+                                       echo '<div class="col-sm-1 d-flex flex-row">&nbsp<a href="javascript:;" onClick="AsociarDocumento('.$nuradAso.','.$refe_padreAso.',3);" class="Ntooltip" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="Asociar Documento"><i class="fa-solid fa-file-circle-plus text-primary" style="font-size:1.5rem;"></i></a>';
+                               
+                           }//FIN ELSE
+                           
+                       }
+                    ?>
+                </div>
+        </div>
+                    
 
             <?php  if ($ent==2) {                    
                     $mostrarRedirigido = verificarInstitucion($documento_us1,$_SESSION['inst_codi'],$db);
@@ -1489,35 +1476,27 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
                 <?php
                 if ($ent==1) {
                 ?>
-               </tr>
+               
                 <?php
                 }
                 ?>
-                <tr>
-                    <td valign="top">
+                <div class="row m-1"> 
+                    <div class="col-sm-2 d-flex flex-row">
                         <!--<p style="font-weight : bold; font-family: Arial, Helvetica, sans-serif; font-size: 10px;">-->
                         <?php if ($ent==2) echo "<font size='1' color='black'><b>&nbsp;&nbsp;Resumen:</b></font>"; else echo "<font size='1' color='black'><b>&nbsp;&nbsp;Cuerpo del Documento:</b></font>"?>
                         <!--</p>-->
-                        
-
-
-                    </td>
-                    <td align="left" valign="middle">
-                        <table border="0" width="100%">
-                            <tr>
-                                <td width="35%" align="left" class="listados1" valign="middle">&nbsp;
+                    </div>
             <?php
             if ($nurad != "") {
                 $query = "select TO_CHAR(text_fecha,'YYYY-MM-DD HH24:MI AM'), text_codi from radi_texto where radi_nume_radi=$nurad";
                 $rs=$db->conn->query($query);
                 if(!$rs->EOF) {
+                    echo '<div class="col-sm-2 d-flex flex-row">';
                     echo "<b>Versi&oacute;n: &nbsp;&nbsp;&nbsp;</b>";
-                    print $rs->GetMenu2("codi_texto", $codi_texto, "", false,"","class='select' onChange='cambio_cuerpo(this.value)'" );
+                    print $rs->GetMenu2("codi_texto", $codi_texto, "", false,"","class='form-select form-select-sm' onChange='cambio_cuerpo(this.value)'" );
                 }
             }
             ?>
-                                </td>
-                                <td width="35%" align="left" class="listados1" valign="middle">&nbsp;
             <?php
             if ($_SESSION["perm_borrar_recorrido"] == 1) {
                 echo '<input type="checkbox" name="chk_ocultar_recorrido" id="chk_ocultar_recorrido" value="1"';
@@ -1525,19 +1504,13 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
                 echo '><b>Borrar recorrido luego de la firma del documento.</b>';
             }
             ?>
-                                </td>
-                                <td width="30%" align="right" class="listados1" valign="middle">&nbsp;
             <?php
             // Texto de la última sumilla
             $txt_sumilla = "";
             ?>
-
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                
+            </div>
+            </div>
+            </td>
                 <tr>
                     <td class="listado1" colspan="4">
                         <div id="div_cuerpo" style="display: none;"></div>
@@ -1546,7 +1519,6 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
                         </center>
                     </td>
                 </tr>
-        </table>
         </div>
         
 

@@ -59,7 +59,7 @@ include_once "usuarios_lista_modificada.php";
 </script>
 <body>
 
-<table  width="100%" border="0" cellpadding="0" cellspacing="0">
+<table class="table"  width="100%" border="0" cellpadding="0" cellspacing="0">
     <? 
     
     /*echo "RADI: ".$radi_lista_nombre;
@@ -67,6 +67,7 @@ include_once "usuarios_lista_modificada.php";
     echo "RAD:".$radi_lista_nombre;*/
     if ($ent==1 and trim($radi_lista_nombre)!='') {
     ?>
+    <thead>
     <tr>
     <td align="left" class="listado1_ver">Listas Seleccionadas: </td>
     <td colspan="4">
@@ -83,7 +84,7 @@ include_once "usuarios_lista_modificada.php";
 	<td width='21%' CLASS=titulos2 ><?=$descEmpresa?></td>
         
     </tr>
-
+    </thead>
     <?
         for($j=0;$j<3;$j++) {
             if ($j==0) { 	$cca = explode("-",$documento_us1);	$nom="Para:";	$tip="D";	}

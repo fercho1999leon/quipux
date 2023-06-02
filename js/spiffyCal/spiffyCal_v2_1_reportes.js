@@ -279,7 +279,7 @@ alert('formatMatchCount='+formatMatchCount);
 alert('TEST    '+dThis.getDate()+"-"+dThis.getMonth());
 
 		if (bOK==true) {
-			eInput.className = "cal-TextBox";
+			eInput.className = "form-control";
 			//Check for Start/End Dates
 
 			if (dStartDate!=null) {

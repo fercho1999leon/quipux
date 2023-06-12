@@ -21,6 +21,7 @@ session_start();
 $ruta_raiz = "..";
 include_once "$ruta_raiz/rec_session.php";
 include_once "$ruta_raiz/include/tx/Firma_Digital.php";
+include_once "$ruta_raiz/interconexion/FirmaUtils.php";
 
 $db_bodega = new ConnectionHandler($ruta_raiz,"bodega");
 
@@ -58,8 +59,8 @@ if ($archivo_base64 == "")
     die(imprimir_resultado_firma("Lo sentimos, no se encontr&oacute; el archivo solicitado."));
 
 // LLAmamos al WS para verificar la firma
-$firma = verificar_firma_archivo($archivo_base64);
-
+$VerificarFirma = new FirmaUtils();
+$firma = $VerificarFirma->VerificarFirmaDocumento($archivo_base64);
 // Si se pudo verificar el archivo y no habia sido verificado antes, se guarda el archivo verificado
 if ($firma["flag"] == 1 and $arch_codi_firma != 0 and $arch_codi==0) {
     $arch_nombre = str_ireplace(".p7m", "", $arch_nombre);
@@ -86,14 +87,13 @@ if ($firma["flag"] == 1 and $arch_codi_firma != 0 and $arch_codi==0) {
     }
 }
 
-$botones_descarga = "<a onclick='fjs_radicado_descargar_archivo(\"$radi_nume\", \"$anex_codigo\", 1, \"download\");' href='javascript:;' class='vinculos'>Descargar Archivo Firmado</a>";
+$botones_descarga = "<div class='btn-group' role='group'><button type='button' class='btn btn-primary' onclick='fjs_radicado_descargar_archivo('$radi_nume', '$anex_codigo', 1, 'download');' href='javascript:;'>Descargar Archivo Firmado</button>";
 
 if ($firma["flag"] == 1) {
-    $botones_descarga .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a onclick='fjs_radicado_descargar_archivo(\"$radi_nume\", \"$anex_codigo\", 0, \"download\");' href='javascript:;' class='vinculos'>Descargar Archivo Verificado</a>";
+    $botones_descarga .= "<button type='button' class='btn btn-primary' onclick='fjs_radicado_descargar_archivo(\"$radi_nume\", \"$anex_codigo\", 0, \"download\");' href='javascript:;'>Descargar Archivo Verificado</button></div>";
     echo imprimir_resultado_firma ($firma["mensaje"], $botones_descarga, $firma["datos_firma"]);
 } else {
-    echo imprimir_resultado_firma ("Lo sentimos, no se pudo verificar la firma electr&oacute;nica del archivo.", $botones_descarga);
+    echo imprimir_resultado_firma ("Lo sentimos, no se pudo verificar la firma electr&oacute;nica del archivo.", $botones_descarga.="</div>");
 }
 
 
@@ -101,11 +101,49 @@ function imprimir_resultado_firma ($mensaje, $botones_descarga, $datos_firma="")
     $texto = "<br><br>
               <center>
                 <font color='red' face='Arial' size='3'>$mensaje</font>
-                ".str_replace("<table>","<br><br><table border='2' cellspace='2' cellpad='2' width='98%' class='t_bordeGris'>", $datos_firma)."
-                <br><br>$botones_descarga<br><br><br>
-                <input type='button' onClick='fjs_popup_cerrar();' name='cerrar' value='Cerrar Ventana' class='botones_largo'/>
+                <div class='w-75 p-3'>".formatData($datos_firma)."</div>
+                $botones_descarga<br><br>
+                <button type='button' class='btn btn-primary' onClick='fjs_popup_cerrar();' name='cerrar'>Cerrar Ventana</button>
               </center>";
     return $texto;
+}
+
+function formatData ($datos){
+    $TranslateTerms = new FirmaUtils();
+    if(is_array($datos)){
+        $table ='
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <tbody>
+
+        ';
+        foreach($datos as $key => $value){
+            $temp = $TranslateTerms->translateTermsSignature($key);
+            $temp = $temp!=''?$temp:ucwords($key);
+            if(is_array($value)){
+                $table .= '
+                    <tr>
+                        <td>'.$temp.'</td>
+                        <td>'.formatData($value).'</td>
+                    </tr>
+                ';
+            }
+            $table .= '
+                <tr>
+                    <td>'.$temp.'</td>
+                    <td>'.($value==1?"Si":$value).'</td>
+                </tr>
+            ';
+        }
+        $table .='
+                </tbody>
+            </table>
+        </div>
+        ';
+        return $table;
+    }
+    return "Error en el array";
+
 }
 
 ?>

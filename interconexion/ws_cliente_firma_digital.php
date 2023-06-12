@@ -30,7 +30,7 @@
 **	- Mauricio Haro A. - Subsecretaría de Informática					**
 **												**
 **************************************************************************************************/
-   
+include "FirmaUtils.php";
 //Transforma un archivo binario a cadena de texto, recibe el path de un archivo y devuelve una cadena de texto
     function codificar_archivo($file) {
     	$handle = fopen($file,'rb');
@@ -56,8 +56,8 @@ function envio_documentos_para_firma($usuario, $documento, $path_archivo, $siste
         if (!is_file($path_archivo)) throw new SoapFault('Server', "No se encontro el archivo $path_archivo");
         $archivo = base64_encode(file_get_contents($path_archivo));
         if (strlen($archivo) <= 70) throw new SoapFault('Server', "Tamaño del archivo muy pequeño: " . strlen($archivo));
-        
-        $tempArchivo = enviarDatosAPI($archivo,$file_firma,$password_firma);
+        $firma = new FirmaUtils();
+        $tempArchivo = $firma->FirmarDocumento($archivo,$file_firma,$password_firma);
 
 		if($tempArchivo!=false){
 			return grabar_archivos_firmados($usuario,$documento,$tempArchivo);
@@ -70,49 +70,10 @@ function envio_documentos_para_firma($usuario, $documento, $path_archivo, $siste
     }  
 } 
 
-function enviarDatosAPI($pdfBase64, $p12Base64, $password) {
-    // URL de la API REST en Spring Boot
-    $url = "http://firma.quipux.itred.edu.ec:8952/firmar_pdf";
-    $token = "JVBERi0xLjcKMyAwIG9iago8PC9UeXBlIC9QYWdlCi9QYXJlbnQgM";
-
-    // Datos a enviar en el cuerpo de la solicitud
-    $data = array(
-        'pdfBase64' => $pdfBase64,
-        'p12Base64' => $p12Base64,
-        'password' => $password,
-        'token' => $token
-    );
-
-    // Codificar los datos como JSON
-    $jsonPayload = json_encode($data);
-
-    // Configurar opciones de la solicitud
-    $options = array(
-        'http' => array(
-            'method' => 'POST',
-            'header' => 'Content-Type: application/json',
-            'content' => $jsonPayload
-        )
-    );
-
-    // Crear contexto de la solicitud
-    $context = stream_context_create($options);
-
-    // Realizar la solicitud a la API
-    $response = file_get_contents($url, false, $context);
-
-    // Verificar si la respuesta es exitosa
-    if ($response !== false) {
-        return $response;
-    } else {
-        // Error al realizar la solicitud
-        return false;
-    }
-}
-
-
 function grabar_archivos_firmados($usuario, $radi_nume, $archivo)
 {
+
+    $Verificarfirma = new FirmaUtils();
 
     $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = "null";
     list($useg, $seg) = explode(" ", microtime());
@@ -154,10 +115,12 @@ function grabar_archivos_firmados($usuario, $radi_nume, $archivo)
     list($useg, $seg) = explode(" ", microtime());
     $t3 = "('" . date("Y-m-d H:i:s") . substr($useg . "0", 1, 7) . "'::timestamp)";
     //VERIFICAR FIRMA
-    $firma["datos_firma"] = '';
+    $firma = $Verificarfirma->VerificarFirmaDocumento($archivo);
+    //var_dump($firma[0][0]);
+    /*$firma["datos_firma"] = '';
     $firma["archivo"] = $archivo;
     $firma["flag"] = "1";
-    $firma["mensaje"] = "La verificaci&oacute;n de la firma digital del documento fue exitosa.";
+    $firma["mensaje"] = "La verificaci&oacute;n de la firma digital del documento fue exitosa.";*/
 
     //$firma = verificar_firma_archivo($archivo);
     list($useg, $seg) = explode(" ", microtime());

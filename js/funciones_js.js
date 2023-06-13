@@ -101,17 +101,17 @@ function fjs_popup_crear_divs () {
         document.getElementById('div_popup_pantalla_tabajo').innerHTML = '';
     } catch (e) {
         texto = '<div id="div_popup_bloquear_pantalla" style="width: 100%; height: 100%; z-index: 1000; position: fixed; top: 0; left: 0; opacity:0.3; filter:alpha(opacity=30); background-color: black; display: none;"></div>\n' +
-                '    <div id="div_popup_pantalla_pequena" style="width: 80%; height: 80%; z-index: 1001; position: fixed; top: 5%; left: 10%; background-color: white; border: #333333 2px solid; display: none">\n' +
-                '        <div id="div_popup_titulo" style="font-weight: bold; text-align: center; font-size: small; color: #FFFFFF; background-color:#006394; width: 100%; height: 20px; position: relative;">\n' +
+                '    <div id="div_popup_pantalla_pequena" style="width: 80%; height: 80%; z-index: 1001; position: fixed; top: 5%; left: 10%; border-radius: 15px; background-color: rgba(255,255,255,0.8); backdrop-filter: blur(10px); display: none">\n' +
+                '        <div id="div_popup_titulo" style="font-weight: bold; text-align: center; font-size: small; color: #FFFFFF; background-color:#006394; width: 100%; height: 25px; position: relative; padding-left: 15px; padding-right: 15px; border-radius: 15px 15px 0 0; display: flex;">\n' +
                 '            <table width="100%" border="0" cellpadding="0" cellspacing="0">\n' +
                 '               <tr height="18px">\n' +
                 '                   <td width="3%">&nbsp;</td>\n' +
                 '                   <td width="94%" style="font-weight: bold; text-align: center; font-size: small; color: #FFFFFF; vertical-align: middle"><span id="span_popup_titulo"></span></td>\n' +
-                '                   <td width="3%" align="right" valign="bottom"><img src="data:image/gif;base64,R0lGODlhDwAPANU/AOh1ceFlZPKKf8G6uO64ublNVMR5gbVKU+JqaM1VWvF8dqeWlOlradNVWcFybNNaXqNEQqycmuRubPvZsMmJdfSzne6vmbNnXv36+8JqaalAUJo+OuOSgveNhKlBT7xRWN1kZMd+e+BoZ4R1dMtOUt98gKuKiLFDVa0/Sr1IS7tLWvWTiMuCiPbBwNRdYvvYv/a0sv/etPO+valMSMVTXc9aXuJrav+0ndlgYuWhpM5aXsF0bKlAT7pKWv///////yH5BAEAAD8ALAAAAAAPAA8AAAa1wB8r49gZjztHhvULCW6T2GQ6ld4EoYKgw6FULOAKhdMRFD4KRWh0WQlWl1Eo/SkAAjDfYqaYLXwwAQAFBRISNjI+ERsRPjI2hoQINjYBLT4DPi0BlAiEIiIIDBCZAxAMCKAFByAgo40viqetBwc4IBB/BA0EehAgOLUuKSY+uw+8PiYpLrU1CSU5DQ/UDTklCTUHKDQJCSQ64eEk3jQoBicqPevs7ConBj8GGjwe9Tz4+BrxQQA7" onclick="fjs_popup_cerrar();">&nbsp;</td>\n' +
+                '                   <td width="3%" align="right" valign="middle"><i class="fa-solid fa-rectangle-xmark" style="color: #ffffff; font-size: 1rem; cursor: pointer;" onclick="fjs_popup_cerrar();"></i></td>\n' +
                 '               </tr>\n' +
                 '            </table>\n' +
                 '        </div>\n' +
-                '        <div id="div_popup_pantalla_tabajo" style="background-color:white; width: 100%; height: 94%; position: relative; overflow: auto;"></div>\n' +
+                '        <div id="div_popup_pantalla_tabajo" style="width: 100%; height: 94%; position: relative; overflow: auto;" class="overflow"></div>\n' +
                 '    </div>';
         try {
             document.body.innerHTML += texto;

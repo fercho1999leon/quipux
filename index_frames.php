@@ -35,12 +35,13 @@ include_once "$ruta_raiz/rec_session.php";
         <title>.:: Quipux - Sistema de Gesti&oacute;n Documental ::.</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="shortcut icon" href="imagenes/favicon.ico">
+        
     </head>
     <frameset rows="110,864*" frameborder="yes" border="0" framespacing="0" cols="*" >
         <frame name="topFrame" scrolling="no" noresize src="f_top.php" ></frame>
         <frameset cols="210,922*" border="1" framespacing="0" rows="*">
-            <frame name="leftFrame" id="leftFrame" src="correspondencia.php" marginwidth="0" marginheight="0" scrolling="auto" border="1"></frame>
-            <frame name="mainFrame" id="mainFrame" src="cuerpo.php" scrolling="auto"></frame>
+            <frame name="leftFrame" id="leftFrame" src="correspondencia.php" marginwidth="0" marginheight="0" scrolling="auto" border="1" ></frame>
+            <frame name="mainFrame" id="mainFrame" src="cuerpo.php" scrolling="auto" ></frame>
         </frameset>
     </frameset>
     <noframes></noframes>

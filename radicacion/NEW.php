@@ -490,6 +490,7 @@ function pestanas(valor)
         document.getElementById('cuerpo_anexos').style.display = "none";
         document.getElementById('cuerpo_anexos2').style.display = "none";
         document.getElementById('opciones_impresion').style.display = "none";
+        document.getElementById('div_estilo_impresion').style.display = "none";
         document.getElementById('bandera_cambiarop').value=0;
     }
     if (valor==2) {
@@ -505,6 +506,7 @@ function pestanas(valor)
         document.getElementById('cuerpo_anexos').style.display = "";
         document.getElementById('cuerpo_anexos2').style.display = "";
         document.getElementById('opciones_impresion').style.display = "none";
+        document.getElementById('div_estilo_impresion').style.display = "none";
     }
     if (valor==3) {        
         document.getElementById('etiqueta1').style.display = "";
@@ -516,6 +518,7 @@ function pestanas(valor)
         document.getElementById('cuerpo_documento').style.display = "none";
         document.getElementById('cuerpo_anexos').style.display = "none";
         document.getElementById('cuerpo_anexos2').style.display = "none";
+        document.getElementById('div_estilo_impresion').style.display = "";
         document.getElementById('opciones_impresion').style.display = ""; 
         document.getElementById('bandera_cambiarop').value=1;
         cargarEstiloImpresion();        
@@ -1380,9 +1383,9 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
                 }
                 ?>
                     <input class="form-control form-control-sm" alt="Ingrese un Documento asociado" name="referencia" id="referencia" type="text" maxlength="80" size="60" class="tex_area"
-                    value="<?=$referencia?>" <?=$readReferencia?> onkeyup="validaEspacio(event, this, '<?=$readReferencia?>');" onblur="quitarCaracter(this, ' ');"/>
+                    value="<?=$referencia?>" <?=$readReferencia?> onkeyup="validaEspacio(event, this, '<?=$readReferencia?>');" onblur="quitarCaracter(this, ' ');" disabled/>
                 </div>
-                </div>
+                
                 <?php
                 // MOSTRAR ICONOS DE REFERENCIA
                 if ($radicado["radi_padre"]!='') {
@@ -1397,16 +1400,20 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
                         $ventana = "$ruta_raiz/documento_online.php?verrad=$nurad_referencia";
                         $nivel_seguridad_refe = obtener_nivel_seguridad_documento($db, $nurad_referencia);
                         if ($nivel_seguridad_refe >= 2) {
-                            echo "&nbsp;<img src='$ruta_raiz/imagenes/zoom_in.png' width='17' height='17' alt='Vista Previa' border='0'
-                                        title='Ver en l&iacute;nea Documento de Referencia' onClick='ventanaNueva(\"$ventana\");'>
-                                    &nbsp;<img src='$ruta_raiz/imagenes/document_down.jpg' width='17' height='17' alt='Vista Previa' border='0'
-                                        title='Descargar Documento de Referencia'
-                                        onClick=\"fjs_radicado_descargar_archivo('$nurad_referencia', '".$radRefe["radi_imagen"]."', 0, 'download');\">";
+                            echo "
+                                <div class='col-sm-2 d-flex flex-row align-items-center'>
+                                &nbsp;<a class='Ntooltip' data-mdb-toggle='tooltip' data-mdb-placement='right' data-mdb-original-title='Ver en l&iacute;nea Documento de Referencia'><i class='fa-solid fa-magnifying-glass text-primary' style='font-size:1rem;' alt='Vista Previa' border='0'
+                                onClick='ventanaNueva(\"$ventana\");'> </i> </a>
+                                &nbsp;<a class='Ntooltip' data-mdb-toggle='tooltip' data-mdb-placement='right' data-mdb-original-title='Descargar Documento de Referencia'><i class='fa-solid fa-file-arrow-down text-primary' style='font-size:1rem;' alt='Vista Previa' border='0'
+                                onClick=\"fjs_radicado_descargar_archivo('$nurad_referencia', '".$radRefe["radi_imagen"]."', 0, 'download');\"> </i> </a>
+                                </div>
+
+                            ";
                         }
                     }
                 }
                     ?>
-                
+                </div>
                         <div class="col-sm-11 d-flex flex-row">
                             <label class="listado1_ver mx-3">Asunto:</label>
                             <textarea id="asunto" name="asunto" cols="150" class="form-control form-control-sm" rows="1" onkeypress="return limita(event,'asunto','spn_numero_caracteres_disponibles',250);" ><?php echo $asunto ?></textarea>
@@ -1594,7 +1601,7 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
             
         </table>
         <?}?>
-
+        </div>
         <div id="div_estilo_impresion" style="display: none"></div>
          <div id="div_modificar_op"></div>
         <input type="hidden" name="NumDest" id="NumDest"  value="<?=$VariosDest?>">
